@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jara Holidays — Langkawi &amp; Siri Antarabangsa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FFFFFF; --bg-alt:#F5F5F7; --bg-dark:#1D1D1F; --bg-dark-2:#000000;
+  --text:#1D1D1F; --text-2:#6E6E73; --text-3:#86868B;
+  --border:#D2D2D7; --border-soft:#E8E8ED;
+  --blue:#0071E3; --blue-hover:#0077ED; --blue-soft:#2997FF;
+  --red:#FF3B30; --green:#34C759;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.06);
+  --shadow:0 4px 16px rgba(0,0,0,.08);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.12);
+  --shadow-xl:0 24px 60px rgba(0,0,0,.16);
+  --text-dark:#F5F5F7; --text-dark-2:#A1A1A6; --border-dark:rgba(255,255,255,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden}
+::selection{background:var(--blue);color:#fff}
+img{display:block;max-width:100%}
+button{font:inherit;cursor:pointer;background:none;border:0;color:inherit}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.wrap{width:min(1180px,92%);margin:0 auto}
+.narrow{width:min(820px,92%);margin:0 auto}
+section{scroll-margin-top:84px}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#C7C7CC;border-radius:8px}
+h1,h2,h3,h4,.sec-title{font-weight:600;letter-spacing:-.03em;line-height:1.1}
+.kicker{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--blue)}
+.kicker.light{color:var(--blue-soft)}.kicker.coral{color:var(--blue)}
+.btn{display:inline-flex;align-items:center;gap:.4rem;border-radius:980px;padding:.75rem 1.5rem;font-weight:500;font-size:.9rem;border:1.5px solid transparent;transition:all .25s cubic-bezier(.4,0,.2,1)}
+.btn svg{width:16px;height:16px}
+.btn.primary{background:var(--blue);color:#fff}
+.btn.primary:hover{background:var(--blue-hover);transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,113,227,.35)}
+.btn.ghost{background:var(--bg);border-color:var(--border);color:var(--text)}
+.btn.ghost:hover{background:var(--bg-alt);border-color:var(--text-2)}
+.dark .btn.ghost{background:transparent;border-color:var(--border-dark);color:var(--text-dark)}
+.dark .btn.ghost:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.3)}
+.btn.sm{padding:.55rem 1.1rem;font-size:.8rem}
+.btn.block{width:100%;justify-content:center}
+[data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.16,1,.3,1)}
+[data-reveal].in{opacity:1;transform:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,59,48,.45)}70%{box-shadow:0 0 0 8px rgba(255,59,48,0)}}
+
+/* ============ PRELOADER ============ */
+.preloader{position:fixed;inset:0;z-index:10000;background:#000;display:grid;place-items:center;transition:opacity .7s ease,visibility .7s ease}
+.preloader.hidden{opacity:0;visibility:hidden}
+.preloader-inner{text-align:center}
+.preloader-logo{font-size:2.8rem;font-weight:700;color:#fff;letter-spacing:-.03em;display:flex;align-items:baseline;gap:.4rem;justify-content:center;animation:prePulse 1.4s ease-in-out infinite}
+.preloader-logo .dot{color:var(--blue-soft)}
+@keyframes prePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.94)}}
+.preloader-bar{width:160px;height:2px;background:rgba(255,255,255,.12);border-radius:2px;overflow:hidden;margin:1.4rem auto 0}
+.preloader-bar span{display:block;width:40%;height:100%;background:var(--blue-soft);border-radius:2px;animation:preLoad 1.2s ease-in-out infinite}
+@keyframes preLoad{0%{transform:translateX(-100%)}100%{transform:translateX(350%)}}
+.preloader-text{margin-top:.8rem;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);font-weight:500}
+
+/* ============ SCROLL PROGRESS ============ */
+.scroll-progress{position:fixed;top:0;left:0;height:2.5px;width:0%;background:linear-gradient(90deg,var(--blue),var(--blue-soft),var(--blue));z-index:70;transition:width .1s ease-out;box-shadow:0 0 8px rgba(0,113,227,.5)}
+
+/* ============ CUSTOM CURSOR ============ */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;mix-blend-mode:difference}
+.cursor-dot{width:6px;height:6px;background:#fff;margin:-3px 0 0 -3px;transition:opacity .2s}
+.cursor-ring{width:36px;height:36px;border:1.5px solid rgba(255,255,255,.6);margin:-18px 0 0 -18px;transition:width .3s cubic-bezier(.16,1,.3,1),height .3s cubic-bezier(.16,1,.3,1),margin .3s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s}
+.cursor-ring.grow{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.9)}
+.cursor-ring.shrink{width:20px;height:20px;margin:-10px 0 0 -10px}
+@media(hover:none),(max-width:860px){.cursor-dot,.cursor-ring{display:none}}
+
+/* ============ NAVIGASI ============ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:60;padding:1rem 0;transition:.35s}
+#nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{font-weight:700;font-size:1.3rem;color:var(--text-dark);display:flex;align-items:baseline;gap:.4rem;line-height:1}
+.brand .dot{color:var(--blue-soft)}
+.brand small{font-size:.56rem;letter-spacing:.18em;font-weight:600;text-transform:uppercase;opacity:.8}
+.nav-links{display:flex;gap:1.8rem}
+.nav-links a{color:rgba(255,255,255,.95);font-size:.84rem;font-weight:400;position:relative;padding:.2rem 0;transition:.2s;text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.nav-links a:hover{color:#fff}.nav-links a.active{color:#fff}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-2px;width:0;height:1.5px;background:var(--blue-soft);transition:.3s}
+.nav-links a.active::after{width:100%}
+.nav-cta{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:980px;padding:.5rem 1.1rem;font-size:.78rem;font-weight:500;transition:.25s;backdrop-filter:blur(10px)}
+.nav-cta svg{width:14px;height:14px}
+.nav-cta:hover{background:var(--blue);border-color:var(--blue)}
+#nav.scrolled{background:rgba(255,255,255,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--border-soft);padding:.6rem 0}
+#nav.scrolled .brand{color:var(--text)}
+#nav.scrolled .nav-links a{color:var(--text-2);text-shadow:none}
+#nav.scrolled .nav-links a:hover,#nav.scrolled .nav-links a.active{color:var(--text)}
+#nav.scrolled .nav-cta{background:var(--bg);border-color:var(--border);color:var(--text)}
+#nav.scrolled .nav-cta:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+#burger{display:none;width:40px;height:40px;flex-direction:column;gap:5px;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.3);border-radius:50%}
+#burger span{width:18px;height:1.5px;background:#fff;transition:.3s}
+#nav.scrolled #burger{border-color:var(--border)}#nav.scrolled #burger span{background:var(--text)}
+#mnav{position:fixed;inset:0;background:var(--bg-dark-2);z-index:80;display:flex;flex-direction:column;justify-content:center;padding:2.4rem;gap:1.4rem;opacity:0;visibility:hidden;transition:.4s}
+#mnav.open{opacity:1;visibility:visible}
+#mnav a{font-size:1.8rem;color:var(--text-dark);font-weight:600;letter-spacing:-.02em}
+#mnav a em{display:block;font-style:normal;font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue-soft);margin-bottom:.1rem;opacity:.9;font-weight:600}
+#mnav .mnav-foot{margin-top:1.6rem;color:var(--text-dark-2);font-size:.82rem}
+#mnav .mnav-foot b{color:var(--text-dark)}
+#mnavClose{position:absolute;top:1.4rem;right:1.4rem;width:44px;height:44px;border:1px solid var(--border-dark);border-radius:50%;color:var(--text-dark);display:grid;place-items:center}
+#mnavClose svg{width:20px;height:20px}
+
+/* ============ HERO ============ */
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;background:#000}
+.hero-slides{position:absolute;inset:0;will-change:transform}
+.hero-slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s cubic-bezier(.4,0,.2,1)}
+.hero-slide.active{opacity:1}
+.hero-slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);transition:transform 8s ease}
+.hero-slide.active img{transform:scale(1.14)}
+.hero-slide::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.5) 35%,rgba(0,0,0,.25) 65%,rgba(0,0,0,.55) 100%),linear-gradient(to bottom,rgba(0,0,0,.4) 0%,transparent 20%,transparent 55%,rgba(0,0,0,.85) 100%)}
+.hero-content{position:relative;z-index:5;height:100%;display:flex;flex-direction:column;justify-content:space-between;padding:7rem 3rem 2rem;max-width:1180px;margin:0 auto}
+.hero-main{max-width:580px;color:#fff;transition:opacity .5s ease,transform .5s cubic-bezier(.16,1,.3,1)}
+.hero-main.switching{opacity:0;transform:translateY(20px)}
+.hero-eyebrow{display:flex;align-items:center;gap:.7rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--blue-soft);margin-bottom:1.2rem;text-shadow:0 2px 12px rgba(0,0,0,.7);opacity:0;transform:translateY(20px);transition:opacity .8s ease .2s,transform .8s cubic-bezier(.16,1,.3,1) .2s}
+.hero.loaded .hero-eyebrow{opacity:1;transform:none}
+.hero-eyebrow::before{content:'';width:32px;height:1.5px;background:var(--blue-soft);box-shadow:0 0 8px rgba(41,151,255,.5)}
+.hero-title{font-size:clamp(3.2rem,9vw,7rem);font-weight:800;letter-spacing:-.045em;line-height:.92;margin-bottom:1.2rem;text-shadow:0 4px 40px rgba(0,0,0,.7),0 2px 12px rgba(0,0,0,.6);perspective:800px}
+.hero-title .letter{display:inline-block;opacity:0;transform:translateY(100%) rotateX(-80deg);transform-origin:bottom;transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
+.hero.loaded .hero-title .letter{opacity:1;transform:none}
+.hero-desc{font-size:1.05rem;font-weight:300;max-width:440px;margin-bottom:2.2rem;line-height:1.55;text-shadow:0 2px 16px rgba(0,0,0,.75),0 1px 6px rgba(0,0,0,.5);opacity:0;transform:translateY(20px);transition:opacity .8s ease .6s,transform .8s cubic-bezier(.16,1,.3,1) .6s}
+.hero.loaded .hero-desc{opacity:1;transform:none}
+.hero-cta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;opacity:0;transform:translateY(20px);transition:opacity .8s ease .8s,transform .8s cubic-bezier(.16,1,.3,1) .8s}
+.hero.loaded .hero-cta{opacity:1;transform:none}
+.btn-explore{--mx:0;--my:0;background:#fff;color:var(--text);padding:1rem 2rem;border-radius:980px;font-weight:600;font-size:1rem;display:inline-flex;align-items:center;gap:.55rem;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s,color .25s,box-shadow .25s;border:1.5px solid #fff;transform:translate(var(--mx),var(--my))}
+.btn-explore:hover{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 8px 24px rgba(0,113,227,.45)}
+.btn-explore svg{width:18px;height:18px;transition:transform .3s}
+.btn-explore:hover svg{transform:translateX(4px)}
+.hero-meta{display:flex;align-items:center;gap:1.5rem;font-size:.82rem;color:rgba(255,255,255,.95);font-weight:400;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+.hero-meta span{display:flex;align-items:center;gap:.4rem}
+.hero-meta svg{width:15px;height:15px;color:var(--blue-soft)}
+.hero-side{position:absolute;right:2.4rem;top:50%;transform:translateY(-50%);z-index:6;display:flex;flex-direction:column;gap:.85rem;opacity:0;transition:opacity .8s ease 1s}
+.hero.loaded .hero-side{opacity:1}
+.side-btn{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.13);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.25);color:#fff;display:grid;place-items:center;transition:.25s}
+.side-btn:hover{background:var(--blue);border-color:var(--blue);transform:scale(1.08)}
+.side-btn svg{width:18px;height:18px;transition:.25s}
+.side-btn.liked{background:var(--red);border-color:var(--red)}
+.side-btn.liked svg{fill:#fff;stroke:#fff}
+.side-btn.saved{background:var(--green);border-color:var(--green)}
+.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:2rem;opacity:0;transform:translateY(20px);transition:opacity .8s ease 1s,transform .8s cubic-bezier(.16,1,.3,1) 1s}
+.hero.loaded .hero-bottom{opacity:1;transform:none}
+.dest-thumbs{display:flex;gap:.85rem}
+.dest-thumb{width:100px;height:135px;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;border:2px solid transparent;transition:all .35s cubic-bezier(.16,1,.3,1);flex:none}
+.dest-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.dest-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8),rgba(0,0,0,.15) 60%);transition:.35s}
+.dest-thumb-label{position:absolute;bottom:.7rem;left:.7rem;right:.7rem;z-index:2;color:#fff;font-size:.7rem;font-weight:600;letter-spacing:.02em;line-height:1.2;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+.dest-thumb-label small{display:block;font-size:.56rem;font-weight:400;opacity:.85;letter-spacing:.06em;text-transform:uppercase;margin-top:.15rem}
+.dest-thumb:hover{border-color:rgba(255,255,255,.6);transform:translateY(-4px)}
+.dest-thumb:hover img{transform:scale(1.1)}
+.dest-thumb.active{border-color:#fff;transform:translateY(-6px);box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.dest-thumb.active::after{background:linear-gradient(to top,rgba(0,113,227,.55),rgba(0,0,0,.1) 60%)}
+.scroll-indicator{display:flex;flex-direction:column;align-items:center;gap:.6rem;color:rgba(255,255,255,.6);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;font-weight:500;writing-mode:vertical-rl}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,rgba(255,255,255,.6),transparent);position:relative;overflow:hidden}
+.scroll-line::after{content:'';position:absolute;top:0;left:0;width:100%;height:40%;background:linear-gradient(to bottom,#fff,transparent);animation:scrollDown 2.2s ease-in-out infinite}
+@keyframes scrollDown{0%{top:-40%;opacity:0}30%{opacity:1}100%{top:100%;opacity:0}}
+
+/* ============ MARQUEE ============ */
+.marquee{background:var(--bg-dark);color:var(--text-dark);overflow:hidden;padding:.85rem 0}
+.marquee-track{display:flex;width:max-content;animation:mq 32s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-set{display:flex;align-items:center;gap:2.2rem;padding-right:2.2rem;font-size:.68rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;opacity:.85}
+.marquee-set svg{width:13px;height:13px;color:var(--blue-soft);flex:none}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ============ SEKSYEN AM ============ */
+.section{padding:clamp(5rem,10vw,8rem) 0;position:relative}
+.section.dark{background:var(--bg-dark);color:var(--text-dark);overflow:hidden}
+.section.tint{background:var(--bg-alt)}
+/* Spotlight pada dark section */
+.section.dark::before{content:'';position:absolute;inset:0;background:radial-gradient(circle 500px at var(--mx,50%) var(--my,50%),rgba(0,113,227,.06),transparent 70%);pointer-events:none;z-index:0;transition:background-position .1s}
+.section.dark>.wrap{position:relative;z-index:1}
+.sec-head{max-width:720px;margin-bottom:3.5rem}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.sec-title{font-size:clamp(2rem,4.2vw,3.2rem);margin:.7rem 0 1rem}
+.sec-title em{font-style:normal;font-weight:300;color:var(--blue)}
+.dark .sec-title em{color:var(--blue-soft)}
+.sec-intro{font-size:1.02rem;color:var(--text-2);max-width:62ch;font-weight:300}
+.dark .sec-intro{color:var(--text-dark-2)}
+.sec-head.center .sec-intro{margin-left:auto;margin-right:auto}
+
+/* ============ KAD AKTIVITI ============ */
+.act-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+.act{position:relative;background:var(--bg);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:transform .4s cubic-bezier(.16,1,.3,1),box-shadow .4s;display:flex;flex-direction:column}
+.act:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.act-img{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--bg-alt)}
+.act-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.act:hover .act-img img{transform:scale(1.08)}
+.act-overlay-tag{position:absolute;top:1rem;left:1rem;z-index:3}
+.badge{background:var(--red);color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.32rem .7rem;border-radius:980px;animation:pulse 2.4s infinite;display:inline-block}
+.act-body{padding:1.4rem;display:flex;flex-direction:column;flex:1}
+.act-tagline{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--blue);margin-bottom:.4rem}
+.act-title{font-size:1.3rem;font-weight:600;letter-spacing:-.02em;margin-bottom:.5rem;line-height:1.2}
+.act-desc{font-size:.85rem;color:var(--text-2);margin-bottom:1rem;flex:1;line-height:1.5;font-weight:300}
+.act-foot{display:flex;align-items:center;justify-content:space-between;gap:.6rem;margin-top:auto}
+.act-price{font-size:.78rem;color:var(--text-2)}
+.act-price b{color:var(--text);font-weight:600;font-size:.95rem}
+.act-price small{font-size:.7rem;color:var(--text-3)}
+.act-btns{display:flex;gap:.5rem}
+.act-cta-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:2rem;justify-content:center}
+
+/* ============ BAHAGIAN ANTARABANGSA ============ */
+.intl-block{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(2.2rem,4vw,4.5rem);align-items:start;margin-bottom:6rem;padding-bottom:6rem;border-bottom:1px solid var(--border-dark)}
+.intl-block:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.intl-block.reverse .intl-poster{order:2}.intl-block.reverse .intl-info{order:1}
+.poster-frame{background:var(--bg);padding:10px 10px 46px;border-radius:14px;box-shadow:var(--shadow-xl);position:relative;cursor:zoom-in;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s;transform-style:preserve-3d;will-change:transform}
+.poster-frame:hover{box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.poster-frame img{width:100%;border-radius:8px;background:var(--bg-alt);min-height:420px}
+.poster-frame figcaption{position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:.74rem;color:var(--text-3);font-weight:500;letter-spacing:.02em}
+.tape{position:absolute;width:88px;height:24px;background:rgba(255,255,255,.55);top:-11px;box-shadow:0 2px 8px rgba(0,0,0,.15);z-index:3;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.tape.t1{left:24px;transform:rotate(-7deg)}
+.tape.t2{right:24px;transform:rotate(5deg)}
+.intl-info h3{font-size:clamp(1.6rem,2.8vw,2.1rem);line-height:1.12;margin:.5rem 0 .4rem;font-weight:600}
+.intl-sub{color:var(--text-dark-2);margin-bottom:1.4rem;font-size:.92rem;font-weight:300}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:1.3rem}
+.chip{border:1px solid var(--border-dark);border-radius:980px;padding:.38rem .85rem;font-size:.64rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text-dark-2)}
+.chip.hot{background:var(--blue);border-color:var(--blue);color:#fff}
+.chip.open{background:var(--green);border-color:var(--green);color:#fff}
+.count-mini{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;color:var(--text-dark-2);margin-bottom:1.2rem;background:rgba(255,255,255,.06);padding:.45rem .9rem;border-radius:980px;border:1px solid var(--border-dark)}
+.count-mini b{color:var(--blue-soft);font-size:.88rem;font-weight:600}
+.intl-high{display:grid;gap:.5rem;margin-bottom:1.5rem}
+.intl-high li{display:flex;gap:.55rem;font-size:.87rem;align-items:flex-start;color:var(--text-dark)}
+.intl-high svg{width:15px;height:15px;color:var(--blue-soft);flex:none;margin-top:4px}
+.intl-price{display:flex;gap:1.4rem;margin-bottom:1.5rem;background:rgba(255,255,255,.05);border:1px solid var(--border-dark);border-radius:14px;padding:1rem 1.2rem;flex-wrap:wrap}
+.intl-price>div small{display:block;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dark-2);margin-bottom:.2rem;font-weight:600}
+.intl-price>div strong{font-size:1.6rem;font-weight:600;letter-spacing:-.02em}
+.intl-cta{display:flex;gap:.7rem;flex-wrap:wrap}
+.itinerary{border-top:1px solid var(--border-dark);padding-top:2.2rem;margin-top:1.8rem}
+.itin-title{font-size:1.05rem;margin:.4rem 0 1.4rem;color:var(--text-dark-2);font-weight:400}
+.route{display:flex;justify-content:space-between;position:relative;margin:1.2rem 0 1.8rem;gap:.3rem;flex-wrap:wrap}
+.route::before{content:'';position:absolute;top:8px;left:24px;right:24px;height:1.5px;background:var(--border-dark)}
+.stop{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;gap:.35rem;min-width:56px;padding:.1rem}
+.stop .dot2{width:16px;height:16px;border-radius:50%;border:2px solid var(--border-dark);background:var(--bg-dark);transition:.3s}
+.stop.active .dot2{background:var(--blue);border-color:var(--blue);box-shadow:0 0 0 5px rgba(0,113,227,.22)}
+.stop b{font-size:.8rem;font-weight:600;line-height:1.1}
+.stop small{font-size:.56rem;letter-spacing:.08em;color:var(--text-dark-2);text-transform:uppercase}
+.day-pills{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.day-pill{min-width:42px;height:42px;padding:0 .5rem;border-radius:980px;border:1.5px solid var(--border-dark);font-size:.82rem;font-weight:500;transition:.25s;display:grid;place-items:center;color:var(--text-dark-2)}
+.day-pill:hover{border-color:rgba(255,255,255,.4);color:var(--text-dark)}
+.day-pill.active{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:600}
+.day-panel{border:1px solid var(--border-dark);border-radius:14px;padding:1.6rem 1.8rem;background:rgba(255,255,255,.03);min-height:230px}
+.day-panel .fade-in{animation:fadeUp .5s both}
+.dp-kicker{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--blue-soft);display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.dp-kicker svg{width:14px;height:14px}
+.dp-title{font-size:1.35rem;margin:.5rem 0 .9rem;font-weight:600;letter-spacing:-.02em}
+.dp-acts{display:grid;gap:.45rem;margin-bottom:1.1rem;max-width:640px}
+.dp-acts li{position:relative;padding-left:1.2rem;font-size:.86rem;color:var(--text-dark);font-weight:300}
+.dp-acts li::before{content:'—';position:absolute;left:0;color:var(--blue-soft)}
+.dp-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+.dp-tag{display:inline-flex;align-items:center;gap:.4rem;border:1px solid var(--border-dark);border-radius:980px;padding:.32rem .75rem;font-size:.68rem;color:var(--text-dark-2)}
+.dp-tag svg{width:13px;height:13px;color:var(--blue-soft)}
+
+/* ============ TENTANG ============ */
+.about-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2.5rem,5vw,5rem);align-items:center}
+.about-text .body{font-size:1.02rem;color:var(--text-2);max-width:58ch;margin-bottom:1rem;font-weight:300}
+.why-strip{display:flex;flex-wrap:wrap;gap:1.4rem 2.2rem;margin-top:2.2rem;padding-top:1.9rem;border-top:1px solid var(--border-soft)}
+.why{display:flex;gap:.9rem;align-items:flex-start;flex:1 1 190px}
+.why svg{width:22px;height:22px;color:var(--blue);flex:none;margin-top:3px}
+.why strong{display:block;font-size:.92rem;font-weight:600}
+.why small{font-size:.78rem;color:var(--text-2);line-height:1.5;display:block;font-weight:300}
+.about-img{border-radius:18px;overflow:hidden;box-shadow:var(--shadow-lg)}
+.about-img img{width:100%;aspect-ratio:4/5;object-fit:cover;will-change:transform}
+.about-img figcaption{padding:.7rem 0 0;font-size:.78rem;color:var(--text-3);text-align:center;font-weight:400}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:4.5rem;border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft)}
+.stat{padding:2rem 1rem;text-align:center;position:relative}
+.stat + .stat::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:1px;background:var(--border-soft)}
+.stat b{font-size:clamp(2rem,3.4vw,2.8rem);font-weight:600;display:block;line-height:1;letter-spacing:-.03em}
+.stat b span{color:var(--blue);font-size:.5em;font-weight:500}
+.stat small{font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-top:.55rem;display:block;font-weight:500}
+
+/* ============ TESTIMONI ============ */
+.quote-wrap{text-align:center;padding:.5rem 0;min-height:240px}
+.quote-mark{width:36px;height:36px;color:var(--blue);margin:0 auto 1.2rem;display:block;opacity:.4}
+blockquote{font-size:clamp(1.25rem,2.5vw,1.75rem);line-height:1.4;max-width:30ch;margin:0 auto;font-weight:400;letter-spacing:-.02em}
+.quote-who{margin-top:1.5rem;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.quote-who span{display:block;font-weight:400;letter-spacing:0;text-transform:none;color:var(--text-3);margin-top:.25rem;font-size:.82rem}
+.quote-anim{animation:fadeUp .5s both}
+.q-controls{display:flex;align-items:center;justify-content:center;gap:1.3rem;margin-top:2.2rem}
+.q-btn{width:42px;height:42px;border:1.5px solid var(--border);border-radius:50%;display:grid;place-items:center;transition:.25s;background:var(--bg)}
+.q-btn svg{width:16px;height:16px}
+.q-btn:hover{background:var(--bg-alt);border-color:var(--text-2)}
+.q-dots{display:flex;gap:.55rem}
+.q-dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:.3s;cursor:pointer}
+.q-dot.active{background:var(--blue);transform:scale(1.3)}
+
+/* ============ TEMPahan ============ */
+.book-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2.5rem,5vw,5rem)}
+.contact-list{margin-top:2.2rem;display:grid;gap:1.3rem}
+.contact-list li{display:flex;gap:1.05rem;align-items:flex-start}
+.c-ico{width:44px;height:44px;border-radius:12px;background:var(--bg-alt);display:grid;place-items:center;flex:none;color:var(--blue)}
+.c-ico svg{width:18px;height:18px}
+.contact-list small{display:block;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:.15rem;font-weight:600}
+.contact-list b{font-size:1rem;font-weight:500}
+.contact-list a b{color:var(--blue);transition:.2s}
+.contact-list a:hover b{text-decoration:underline}
+.book-form{display:grid;gap:1.2rem;background:var(--bg-alt);border-radius:18px;padding:clamp(1.5rem,3vw,2.2rem);border:1px solid var(--border-soft)}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.field label{display:block;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--text-3);margin-bottom:.4rem}
+.field input,.field select,.field textarea{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.65rem .85rem;font:inherit;font-size:.92rem;color:var(--text);transition:.2s;appearance:none}
+.field textarea{resize:vertical;min-height:80px}
+.field :focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,113,227,.12)}
+.field input.err{border-color:var(--red);animation:shake .3s}
+@keyframes shake{25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+.sel{position:relative}
+.sel svg{position:absolute;right:.7rem;bottom:.85rem;width:15px;height:15px;pointer-events:none;opacity:.4}
+.form-note{font-size:.76rem;color:var(--text-3);font-weight:300}
+
+/* ============ FOOTER ============ */
+footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
+.foot-top{display:flex;justify-content:space-between;gap:2.5rem;flex-wrap:wrap;align-items:flex-start;padding-bottom:2.5rem;border-bottom:1px solid var(--border-dark)}
+.foot-logo{font-size:2.2rem;font-weight:700;letter-spacing:-.03em;line-height:1}
+.foot-logo .dot{color:var(--blue-soft)}
+.foot-tag{color:var(--text-dark-2);font-size:.95rem;margin-top:.5rem;font-weight:300}
+.foot-lic{margin-top:1rem;font-size:.72rem;color:var(--text-dark-2);display:flex;gap:.5rem;align-items:center;flex-wrap:wrap}
+.foot-lic svg{width:14px;height:14px;color:var(--blue-soft)}
+.foot-links{display:flex;gap:2.4rem;flex-wrap:wrap;padding-top:.8rem}
+.foot-links a{color:var(--text-dark-2);font-size:.86rem;transition:.2s;font-weight:400}
+.foot-links a:hover{color:var(--text-dark)}
+.foot-base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.7rem;font-size:.74rem;color:var(--text-dark-2);font-weight:300}
+
+/* ============ MODAL ============ */
+.modal{position:fixed;inset:0;z-index:90;display:none;align-items:flex-start;justify-content:center;padding:5vh 1.5rem;overflow-y:auto}
+.modal.show{display:flex}
+.modal-back{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(8px)}
+.modal-body{position:relative;z-index:1;max-width:min(680px,100%);margin:auto;animation:fadeUp .35s both}
+.modal-close{position:absolute;top:-52px;right:0;width:44px;height:44px;border-radius:50%;border:1px solid var(--border-dark);color:var(--text-dark);display:grid;place-items:center;transition:.25s;background:transparent}
+.modal-close svg{width:18px;height:18px}
+.modal-close:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+.modal-content{background:var(--bg);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-xl)}
+.act-modal-img{width:100%;height:220px;object-fit:cover}
+.act-modal-inner{padding:2rem}
+.act-modal-inner h3{font-size:1.6rem;margin:.4rem 0 .8rem;font-weight:600;letter-spacing:-.02em}
+.act-modal-tagline{color:var(--blue);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
+.act-modal-desc{color:var(--text-2);margin-bottom:1.2rem;font-size:.94rem;font-weight:300}
+.act-modal-high{display:grid;gap:.5rem;margin-bottom:1.2rem}
+.act-modal-high li{display:flex;gap:.6rem;font-size:.88rem;align-items:flex-start}
+.act-modal-high svg{width:15px;height:15px;color:var(--blue);flex:none;margin-top:4px}
+.act-modal-inc{font-size:.8rem;color:var(--text-2);border-left:2px solid var(--blue);padding-left:.85rem;margin-bottom:1.4rem;font-weight:300}
+.act-modal-price{display:flex;align-items:baseline;gap:.5rem;margin-bottom:1.4rem;font-size:.84rem;color:var(--text-2)}
+.act-modal-price b{font-size:1.5rem;color:var(--text);font-weight:600}
+.act-modal-price small{font-size:.7rem;color:var(--text-3)}
+
+#toasts{position:fixed;bottom:1.4rem;right:1.4rem;z-index:100;display:flex;flex-direction:column;gap:.7rem;max-width:min(370px,90vw)}
+.toast{display:flex;gap:.8rem;align-items:flex-start;background:var(--bg-dark);color:var(--text-dark);border-radius:14px;padding:.9rem 1.1rem;box-shadow:var(--shadow-lg);animation:toastIn .4s cubic-bezier(.2,.9,.3,1.2) both;font-size:.88rem;border-left:3px solid var(--blue);font-weight:400}
+.toast svg{width:18px;height:18px;flex:none;margin-top:2px;color:var(--blue-soft)}
+.toast.success{border-left-color:var(--green)}.toast.success svg{color:#5AD677}
+.toast.error{border-left-color:var(--red)}.toast.error svg{color:#FF6961}
+.toast.out{animation:toastOut .3s both}
+@keyframes toastIn{from{opacity:0;transform:translateY(16px) scale(.95)}to{opacity:1;transform:none}}
+@keyframes toastOut{to{opacity:0;transform:translateX(24px)}}
+
+/* ============ RESPONSIF ============ */
+@media(max-width:980px){
+  .intl-block,.intl-block.reverse{grid-template-columns:1fr}
+  .intl-block.reverse .intl-poster{order:0}.intl-block.reverse .intl-info{order:0}
+  .about-grid,.book-grid{grid-template-columns:1fr}
+  .poster-frame{max-width:400px;margin:0 auto}
+  .poster-frame img{min-height:380px}
+}
+@media(max-width:860px){
+  .nav-links,.nav-cta{display:none}#burger{display:flex}
+  .hero-content{padding:5.5rem 1.3rem 1.2rem}
+  .hero-main{max-width:100%}
+  .hero-title{font-size:clamp(2.4rem,11vw,4.2rem);margin-bottom:1rem}
+  .hero-desc{font-size:.92rem;margin-bottom:1.6rem;max-width:100%}
+  .hero-eyebrow{font-size:.66rem;margin-bottom:1rem}
+  .hero-eyebrow::before{width:24px}
+  .hero-cta{gap:.8rem}
+  .btn-explore{padding:.8rem 1.5rem;font-size:.88rem}
+  .hero-meta{font-size:.74rem;gap:1rem}
+  .hero-meta span{gap:.35rem}
+  .hero-meta svg{width:13px;height:13px}
+  .hero-side{right:.85rem;gap:.55rem}
+  .side-btn{width:38px;height:38px}
+  .side-btn svg{width:16px;height:16px}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:1.2rem}
+  .dest-thumbs{gap:.6rem}
+  .dest-thumb{width:70px;height:96px;border-radius:10px}
+  .dest-thumb-label{font-size:.62rem;bottom:.5rem;left:.5rem;right:.5rem}
+  .dest-thumb-label small{font-size:.5rem}
+  .scroll-indicator{display:none}
+}
+@media(max-width:820px){
+  .act-grid{grid-template-columns:repeat(2,1fr)}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat + .stat::before{display:none}
+  .f-row{grid-template-columns:1fr}
+  .sec-head{margin-bottom:2.5rem}
+  .sec-title{font-size:clamp(1.7rem,6vw,2.6rem)}
+  .sec-intro{font-size:.94rem}
+}
+@media(max-width:600px){
+  .hero-content{padding:5rem 1.1rem 1rem}
+  .hero-title{font-size:clamp(2rem,13vw,3.5rem);letter-spacing:-.04em}
+  .hero-desc{font-size:.86rem;line-height:1.5}
+  .hero-meta{display:none}
+  .btn-explore{padding:.75rem 1.3rem;font-size:.82rem}
+  .hero-side{right:.7rem;gap:.45rem}
+  .side-btn{width:36px;height:36px}
+  .side-btn svg{width:15px;height:15px}
+  .dest-thumb{width:62px;height:86px}
+  .dest-thumb-label{font-size:.58rem}
+  .dest-thumb-label small{font-size:.46rem}
+  .poster-frame{padding:8px 8px 40px;transform:rotate(0deg)!important}
+  .poster-frame img{min-height:320px}
+  .tape{width:68px;height:20px;top:-9px}
+  .tape.t1{left:16px}.tape.t2{right:16px}
+  .day-panel{padding:1.2rem 1.3rem;min-height:200px}
+  .dp-title{font-size:1.15rem}
+  .dp-acts li{font-size:.82rem}
+  .route{gap:.2rem}
+  .stop{min-width:48px}
+  .stop b{font-size:.72rem}
+  .stop small{font-size:.5rem}
+  .contact-list{gap:1.1rem}
+  .c-ico{width:40px;height:40px}
+  .c-ico svg{width:16px;height:16px}
+  .contact-list b{font-size:.92rem}
+  .intl-price>div strong{font-size:1.35rem}
+  .marquee-set{font-size:.6rem;gap:1.6rem;padding-right:1.6rem}
+  .marquee-set svg{width:11px;height:11px}
+}
+@media(max-width:560px){.act-grid{grid-template-columns:1fr}}
+@media(max-width:420px){
+  .hero-title{font-size:clamp(1.8rem,14vw,3rem)}
+  .hero-side{display:none}
+  .dest-thumb{width:56px;height:78px}
+  .hero-eyebrow::before{width:18px}
+  .hero-eyebrow{font-size:.6rem}
+}
+@media(prefers-reduced-motion:reduce){
+  [data-reveal]{opacity:1;transform:none;transition:none}
+  .marquee-track{animation:none}
+  .badge{animation:none}
+  .hero-slide img{transform:none!important}
+  .scroll-line::after{animation:none}
+  .preloader{display:none}
+  .hero-title .letter{opacity:1!important;transform:none!important}
+  .hero-eyebrow,.hero-desc,.hero-cta,.hero-side,.hero-bottom{opacity:1!important;transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" id="preloader">
+  <div class="preloader-inner">
+    <div class="preloader-logo">JARA<span class="dot">.</span></div>
+    <div class="preloader-bar"><span></span></div>
+    <p class="preloader-text">Jara Holidays</p>
+  </div>
+</div>
+
+<!-- Scroll progress bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="nav">
+  <div class="wrap">
+    <a class="brand" href="#atas">JARA<span class="dot">.</span><small>Holidays</small></a>
+    <div class="nav-links">
+      <a href="#langkawi">Aktiviti Langkawi</a>
+      <a href="#antarabangsa">Siri Antarabangsa</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#tempahan">Tempahan</a>
+    </div>
+    <a class="nav-cta" target="_blank" rel="noopener" id="navWa" href="#"><i data-lucide="message-circle"></i>WhatsApp</a>
+    <button id="burger" aria-label="Buka menu"><span></span><span></span></button>
+  </div>
+</nav>
+
+<div id="mnav">
+  <button id="mnavClose" aria-label="Tutup menu"><i data-lucide="x"></i></button>
+  <a href="#langkawi"><em>01 — Langkawi</em>Top Rated Activities</a>
+  <a href="#antarabangsa"><em>02 — Antarabangsa</em>Yunnan &amp; Balkan</a>
+  <a href="#tentang"><em>03 — Tentang</em>Tentang Kami</a>
+  <a href="#tempahan"><em>04 — Tempahan</em>Tempah &amp; Hubungi</a>
+  <p class="mnav-foot">WhatsApp <b>012-365 9345</b> · 9pg – 9mlm setiap hari</p>
+</div>
+
+<header class="hero" id="atas">
+  <div class="hero-slides" id="heroSlides">
+    <div class="hero-slide active" data-dest="langkawi">
+      <img src="https://picsum.photos/seed/langkawibeach/1920/1200.jpg" alt="Langkawi">
+    </div>
+    <div class="hero-slide" data-dest="yunnan">
+      <img src="https://picsum.photos/seed/yunnansnowmt/1920/1200.jpg" alt="Yunnan">
+    </div>
+    <div class="hero-slide" data-dest="balkan">
+      <img src="https://picsum.photos/seed/istanbulsunset/1920/1200.jpg" alt="Balkan">
+    </div>
+  </div>
+  <div class="hero-side">
+    <button class="side-btn" id="sideHeart" aria-label="Suka"><i data-lucide="heart"></i></button>
+    <button class="side-btn" id="sideSave" aria-label="Simpan"><i data-lucide="bookmark"></i></button>
+    <button class="side-btn" id="sideShare" aria-label="Kongsi"><i data-lucide="share-2"></i></button>
+  </div>
+  <div class="hero-content">
+    <div></div>
+    <div class="hero-main" id="heroMain">
+      <div class="hero-eyebrow"><span id="heroEyebrow">Jara Holidays — MOTAC 600-4/2/13272</span></div>
+      <h1 class="hero-title" id="heroTitle">LANGKAWI</h1>
+      <p class="hero-desc" id="heroDesc">99 pulau magik di utara Selat Melaka. Pantai pasir putih, hutan bakau berusia jutaan tahun, helang menjunam dari langit — semuanya tunggu di rumah kami.</p>
+      <div class="hero-cta">
+        <button class="btn-explore" id="heroExplore" data-goto="#langkawi">Explore <i data-lucide="arrow-right"></i></button>
+        <div class="hero-meta">
+          <span><i data-lucide="map-pin"></i> <span id="heroLoc">Kedah, Malaysia</span></span>
+          <span><i data-lucide="star"></i> <span id="heroRating">4.9</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-bottom">
+      <div class="dest-thumbs">
+        <button class="dest-thumb active" data-dest="langkawi">
+          <img src="https://picsum.photos/seed/lkwthumb/200/270.jpg" alt="Langkawi">
+          <span class="dest-thumb-label">Langkawi<small>99 Pulau</small></span>
+        </button>
+        <button class="dest-thumb" data-dest="yunnan">
+          <img src="https://picsum.photos/seed/yunnthumb/200/270.jpg" alt="Yunnan">
+          <span class="dest-thumb-label">Yunnan<small>Musim Sejuk</small></span>
+        </button>
+        <button class="dest-thumb" data-dest="balkan">
+          <img src="https://picsum.photos/seed/balkthumb/200/270.jpg" alt="Balkan">
+          <span class="dest-thumb-label">Balkan<small>7 Negara</small></span>
+        </button>
+      </div>
+      <div class="scroll-indicator">
+        <span>Scroll</span>
+        <span class="scroll-line"></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <div class="marquee-set">
+      <span>Muslim-friendly — halal sepanjang perjalanan</span><i data-lucide="snowflake"></i>
+      <span>Berlesen MOTAC 600-4/2/13272</span><i data-lucide="sun"></i>
+      <span>Harga jelas, tiada kos tersembunyi</span><i data-lucide="snowflake"></i>
+      <span>Krew lokal Langkawi</span><i data-lucide="sun"></i>
+      <span>WhatsApp dibalas dalam 15 minit</span><i data-lucide="snowflake"></i>
+      <span>Dari Langkawi ke dunia</span><i data-lucide="sun"></i>
+    </div>
+    <div class="marquee-set">
+      <span>Muslim-friendly — halal sepanjang perjalanan</span><i data-lucide="snowflake"></i>
+      <span>Berlesen MOTAC 600-4/2/13272</span><i data-lucide="sun"></i>
+      <span>Harga jelas, tiada kos tersembunyi</span><i data-lucide="snowflake"></i>
+      <span>Krew lokal Langkawi</span><i data-lucide="sun"></i>
+      <span>WhatsApp dibalas dalam 15 minit</span><i data-lucide="snowflake"></i>
+      <span>Dari Langkawi ke dunia</span><i data-lucide="sun"></i>
+    </div>
+  </div>
+</div>
+
+<main>
+<section id="langkawi" class="section">
+  <div class="wrap">
+    <div class="sec-head center" data-reveal>
+      <p class="kicker">( 01 ) — Aktiviti Langkawi</p>
+      <h2 class="sec-title">Top Rated <em>Activities</em></h2>
+      <p class="sec-intro">Alami yang terbaik di Pulau Langkawi bersama aktiviti tertinggi rated kami — daripada lawatan persendirian yang fleksibel sehingga kembara air dan denai off-road yang mendebarkan.</p>
+    </div>
+    <div class="act-grid" id="actGrid" data-reveal></div>
+    <div class="act-cta-row" data-reveal>
+      <a class="btn ghost" target="_blank" rel="noopener" id="allLangkawiWa" href="#"><i data-lucide="message-circle"></i> Tanya pakej Langkawi khas</a>
+    </div>
+  </div>
+</section>
+
+<section id="antarabangsa" class="section dark">
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <p class="kicker light">( 02 ) — Siri Antarabangsa</p>
+      <h2 class="sec-title">Dari salji Yunnan ke <em>Balkan</em> &amp; Istanbul.</h2>
+      <p class="sec-intro">Dua ekspedisi sulung kami ke luar negara — satu menyusuri pegunungan sejuk China, satu lagi melintasi tujuh negara Balkan dan Istanbul. Makanan halal sepanjang perjalanan, tour leader berbahasa Melayu.</p>
+    </div>
+    <div id="intlBlocks" data-reveal></div>
+  </div>
+</section>
+
+<section id="tentang" class="section">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-text" data-reveal>
+        <p class="kicker">( 03 ) — Tentang Kami</p>
+        <h2 class="sec-title">Krew lokal, <em>hati</em> global.</h2>
+        <p class="body">Jara Holidays bermula dengan satu bot dan satu kereta di Jeti Kuah, tahun 2016. Hari ini kami masih di sini — dengan krew yang sama dan cerita yang sama, tapi pasport kami baru-baru ini mula penuh dengan cop China dan Turkiye.</p>
+        <p class="body">Ke Langkawi, anda dibawa oleh anak pulau yang tahu bila helang turun mencari makan. Ke luar negara, anda dijaga macam keluarga sendiri — halal diutamakan, harga dijelaskan awal, tiada kejutan.</p>
+        <div class="why-strip">
+          <div class="why"><i data-lucide="shield-check"></i><div><strong>Operator berlesen</strong><small>Berlesen &amp; berdaftar dengan MOTAC — No. 600-4/2/13272.</small></div></div>
+          <div class="why"><i data-lucide="utensils"></i><div><strong>Halal diutamakan</strong><small>Semua pakej antarabangsa dengan makanan halal penuh.</small></div></div>
+          <div class="why"><i data-lucide="wallet"></i><div><strong>Harga jelas</strong><small>Apa yang anda lihat, apa yang anda bayar.</small></div></div>
+          <div class="why"><i data-lucide="life-buoy"></i><div><strong>Sokongan 24/7</strong><small>WhatsApp kami bila-bila masa — termasuk waktu anda bercuti.</small></div></div>
+        </div>
+      </div>
+      <figure class="about-img" data-reveal>
+        <img loading="lazy" src="https://picsum.photos/seed/jaracrew/800/1000.jpg" alt="Krew Jara Holidays di jeti" id="aboutImg">
+        <figcaption>Jeti Kuah, subuh hari kerja.</figcaption>
+      </figure>
+    </div>
+    <div class="stats" data-reveal>
+      <div class="stat" data-count="9"><b><span class="stat-num">0</span><span>+</span></b><small>Tahun beroperasi</small></div>
+      <div class="stat" data-count="12400"><b><span class="stat-num">0</span><span>+</span></b><small>Pelancong dihantar</small></div>
+      <div class="stat" data-count="4.9"><b><span class="stat-num">0</span><span>/5</span></b><small>Penilaian Google</small></div>
+      <div class="stat" data-count="30"><b><span class="stat-num">0</span><span>+</span></b><small>Pakej aktif</small></div>
+    </div>
+  </div>
+</section>
+
+<section id="testimoni" class="section tint">
+  <div class="wrap narrow" data-reveal>
+    <p class="kicker" style="text-align:center">( 04 ) — Kata Mereka</p>
+    <div class="quote-wrap" id="quoteBox" style="margin-top:2rem"></div>
+    <div class="q-controls">
+      <button class="q-btn" id="qPrev" aria-label="Sebelum"><i data-lucide="chevron-left"></i></button>
+      <div class="q-dots" id="qDots"></div>
+      <button class="q-btn" id="qNext" aria-label="Seterusnya"><i data-lucide="chevron-right"></i></button>
+    </div>
+  </div>
+</section>
+
+<section id="tempahan" class="section">
+  <div class="wrap">
+    <div class="book-grid">
+      <div data-reveal>
+        <p class="kicker">( 05 ) — Tempahan &amp; Hubungi</p>
+        <h2 class="sec-title">Mari kita <em>rancang</em>.</h2>
+        <p class="sec-intro">Tidak pasti aktiviti atau pakej mana sesuai? Ceritakan saja budget dan bilangan orang — kami cadangkan yang terbaik. Aktiviti Langkawi boleh ditempah 24 jam awal; pakej antarabangsa perlukan tempat ditempah lebih awal.</p>
+        <ul class="contact-list">
+          <li><span class="c-ico"><i data-lucide="message-circle"></i></span><a id="cWa" target="_blank" rel="noopener" href="#"><small>WhatsApp</small><b>012-365 9345</b></a></li>
+          <li><span class="c-ico"><i data-lucide="phone"></i></span><div><small>Telefon</small><b>012-365 9345</b></div></li>
+          <li><span class="c-ico"><i data-lucide="mail"></i></span><div><small>Emel</small><b>hello@jaraholidays.my</b></div></li>
+          <li><span class="c-ico"><i data-lucide="map-pin"></i></span><div><small>Pejabat</small><b>No. 12, Persiaran Bunga Raya, 07000 Kuah, Langkawi</b></div></li>
+          <li><span class="c-ico"><i data-lucide="shield-check"></i></span><div><small>No. MOTAC (Lesen)</small><b>600-4/2/13272</b></div></li>
+          <li><span class="c-ico"><i data-lucide="clock"></i></span><div><small>Waktu operasi</small><b>Setiap hari, 9.00 pagi – 9.00 malam</b></div></li>
+        </ul>
+      </div>
+      <form class="book-form" id="bookForm" data-reveal novalidate>
+        <div class="f-row">
+          <div class="field"><label for="f-name">Nama Penuh *</label><input id="f-name" type="text" placeholder="Cth: Ahmad Faizal"></div>
+          <div class="field"><label for="f-phone">No. WhatsApp *</label><input id="f-phone" type="tel" placeholder="Cth: 012-345 6789"></div>
+        </div>
+        <div class="field sel">
+          <label for="f-pkg">Pilih Aktiviti / Pakej</label>
+          <select id="f-pkg">
+            <optgroup label="Aktiviti Langkawi">
+              <option>Private Tour Langkawi</option>
+              <option>Mangrove Tour</option>
+              <option>Sunset Cruise</option>
+              <option>3 In 1 Activities</option>
+              <option>JetSki Tour Packages</option>
+              <option>ATV Ride</option>
+            </optgroup>
+            <optgroup label="Siri Antarabangsa">
+              <option>Winter in Yunnan — 7 Hari 6 Malam (Dis 2026)</option>
+              <option>Balkan Tour + Istanbul — 10 Hari (Apr 2027)</option>
+            </optgroup>
+            <option>Belum pasti — tolong nasihat</option>
+          </select>
+          <i data-lucide="chevron-down"></i>
+        </div>
+        <div class="f-row">
+          <div class="field"><label for="f-date">Tarikh Pilihan</label><input id="f-date" type="date"></div>
+          <div class="field"><label for="f-pax">Bilangan Pax</label><input id="f-pax" type="number" min="1" placeholder="Cth: 4"></div>
+        </div>
+        <div class="field"><label for="f-msg">Mesej (pilihan)</label><textarea id="f-msg" placeholder="Ada permintaan khas? Bilangan kanak-kanak? Ceritakan di sini."></textarea></div>
+        <button class="btn primary block" type="submit">Hantar Melalui WhatsApp <i data-lucide="send"></i></button>
+        <p class="form-note">Butiran dihantar terus ke WhatsApp kami — tiada akaun diperlukan.</p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <p class="foot-logo">JARA<span class="dot">.</span></p>
+        <p class="foot-tag">Holidays — dari pulau ke dunia.</p>
+        <p class="foot-lic"><i data-lucide="shield-check"></i> Berlesen MOTAC · No. 600-4/2/13272</p>
+      </div>
+      <nav class="foot-links">
+        <a href="#langkawi">Aktiviti Langkawi</a>
+        <a href="#antarabangsa">Winter in Yunnan</a>
+        <a href="#antarabangsa">Balkan + Istanbul</a>
+        <a href="#tentang">Tentang</a>
+        <a href="#tempahan">Tempahan</a>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <p>© <span id="yr"></span> Jara Holidays. Hak cipta terpelihara.</p>
+      <p>Harga tertakluk kepada terma &amp; syarat. Imej untuk ilustrasi.</p>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" id="actModal" aria-hidden="true">
+  <div class="modal-back" data-close="act"></div>
+  <div class="modal-body">
+    <button class="modal-close" data-close="act" aria-label="Tutup"><i data-lucide="x"></i></button>
+    <div class="modal-content" id="actModalContent"></div>
+  </div>
+</div>
+
+<div id="toasts"></div>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script>
+const WA='60123659345';
+const POSTER_YUNNAN='https://z-cdn-media.chatglm.cn/files/9426b3f6-c705-4295-ba85-20c54777209b.png?auth_key=1887538547-f4426e4deb2240dc9a294ac75c29f2ec-0-aa310b0677a3713043d0801d4893421d';
+const POSTER_BALKAN='https://z-cdn-media.chatglm.cn/files/43e27dcb-ae80-4bc6-8d30-403295d3c1d9.png?auth_key=1887540538-068d7d8bcbc246bc9f3472af207ef0ee-0-8cb32546ee4b454f0ef763731f539d3c';
+const FALLBACK_YUNNAN='https://picsum.photos/seed/winteryunnanposter/900/1273.jpg';
+const FALLBACK_BALKAN='https://picsum.photos/seed/balkanposter/900/1273.jpg';
+
+const qs=(s,c=document)=>c.querySelector(s);
+const qsa=(s,c=document)=>[...c.querySelectorAll(s)];
+const refreshIcons=()=>window.lucide&&lucide.createIcons();
+const waLink=m=>`https://wa.me/${WA}?text=${encodeURIComponent(m)}`;
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isTouch=matchMedia('(hover:none)').matches;
+
+function toast(msg,type='info'){
+  const box=qs('#toasts');
+  const el=document.createElement('div');
+  el.className='toast '+type;
+  el.innerHTML=`<i data-lucide="${type==='success'?'check':type==='error'?'x':'info'}"></i><span>${msg}</span>`;
+  box.appendChild(el);refreshIcons();
+  setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),320)},3800);
+}
+
+/* ================= PRELOADER ================= */
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    qs('#preloader').classList.add('hidden');
+    qs('.hero').classList.add('loaded');
+  },reduceMotion?0:1200);
+});
+
+/* ================= CUSTOM CURSOR ================= */
+if(!isTouch&&!reduceMotion){
+  const dot=qs('#cursorDot'),ring=qs('#cursorRing');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{
+    mx=e.clientX;my=e.clientY;
+    dot.style.transform=`translate(${mx}px,${my}px)`;
+  });
+  function ringLoop(){
+    rx+=(mx-rx)*0.18;
+    ry+=(my-ry)*0.18;
+    ring.style.transform=`translate(${rx}px,${ry}px)`;
+    requestAnimationFrame(ringLoop);
+  }
+  ringLoop();
+  const interactive='a,button,.act,.dest-thumb,.poster-frame,.day-pill,.stop,.stat,.q-btn,.q-dot,.side-btn';
+  document.addEventListener('mouseover',e=>{
+    if(e.target.closest(interactive))ring.classList.add('grow');
+  });
+  document.addEventListener('mouseout',e=>{
+    if(e.target.closest(interactive))ring.classList.remove('grow');
+  });
+}
+
+/* ================= SCROLL PROGRESS ================= */
+const progress=qs('#scrollProgress');
+let scrollTicking=false;
+window.addEventListener('scroll',()=>{
+  if(!scrollTicking){
+    requestAnimationFrame(()=>{
+      const scrolled=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+      progress.style.width=scrolled+'%';
+      scrollTicking=false;
+    });
+    scrollTicking=true;
+  }
+},{passive:true});
+
+/* ================= HERO LETTER SPLIT ================= */
+function splitLetters(el){
+  const text=el.textContent;
+  el.innerHTML='';
+  [...text].forEach((char,i)=>{
+    const span=document.createElement('span');
+    span.className='letter';
+    span.textContent=char;
+    span.style.transitionDelay=(0.3+i*0.05)+'s';
+    el.appendChild(span);
+  });
+}
+splitLetters(qs('#heroTitle'));
+
+/* ================= HERO DESTINATION SWITCHER ================= */
+const DESTS={
+  langkawi:{eyebrow:'Jara Holidays — Aktiviti Langkawi',title:'LANGKAWI',
+    desc:'99 pulau magik di utara Selat Melaka. Pantai pasir putih, hutan bakau berusia jutaan tahun, helang menjunam dari langit — semuanya tunggu di rumah kami.',
+    loc:'Kedah, Malaysia',rating:'4.9',goto:'#langkawi'},
+  yunnan:{eyebrow:'Siri Antarabangsa — Musim Sejuk 2026',title:'YUNNAN',
+    desc:'Kunming, Dali, Shangri-La, Lijiang. Salji, ngarai terdalam dunia, biara Tibet di tanah tinggi, dan kereta api laju merantas pergunungan China.',
+    loc:'Yunnan, China',rating:'7H6M',goto:'#antarabangsa'},
+  balkan:{eyebrow:'Siri Antarabangsa — Musim Bunga 2027',title:'BALKAN',
+    desc:'7 negara, 10 hari. Istanbul, Dubrovnik, Mostar, Sarajevo. Masjid bersejarah, fjord Montenegro, dan bandar lama UNESCO Eropah.',
+    loc:'Turkiye → Bosnia',rating:'10 Hari',goto:'#antarabangsa'}
+};
+let currentDest='langkawi',autoTimer;
+
+function switchDest(key){
+  if(key===currentDest)return;
+  currentDest=key;
+  const d=DESTS[key];
+  qsa('.hero-slide').forEach(s=>s.classList.toggle('active',s.dataset.dest===key));
+  qsa('.dest-thumb').forEach(t=>t.classList.toggle('active',t.dataset.dest===key));
+  const main=qs('#heroMain');
+  main.classList.add('switching');
+  setTimeout(()=>{
+    qs('#heroEyebrow').textContent=d.eyebrow;
+    qs('#heroTitle').textContent=d.title;
+    splitLetters(qs('#heroTitle'));
+    qs('#heroDesc').textContent=d.desc;
+    qs('#heroLoc').textContent=d.loc;
+    qs('#heroRating').textContent=d.rating;
+    qs('#heroExplore').dataset.goto=d.goto;
+    main.classList.remove('switching');
+  },350);
+}
+qsa('.dest-thumb').forEach(t=>t.addEventListener('click',()=>{clearInterval(autoTimer);switchDest(t.dataset.dest)}));
+qsa('[data-goto]').forEach(el=>el.addEventListener('click',()=>{const t=qs(el.dataset.goto);t&&t.scrollIntoView({behavior:'smooth'})}));
+
+if(!reduceMotion){autoTimer=setInterval(()=>{const keys=['langkawi','yunnan','balkan'];const idx=keys.indexOf(currentDest);switchDest(keys[(idx+1)%keys.length])},6500)}
+qs('.hero').addEventListener('pointerdown',()=>clearInterval(autoTimer),{once:true});
+
+qs('#sideHeart').addEventListener('click',function(){
+  this.classList.toggle('liked');
+  toast(this.classList.contains('liked')?'Ditambah ke kegemaran!':'Dikeluarkan dari kegemaran.','success');
+});
+qs('#sideSave').addEventListener('click',function(){
+  const saved=this.classList.toggle('saved');
+  toast(saved?'Disimpan untuk kemudian.':'Dikeluarkan dari simpanan.','success');
+});
+qs('#sideShare').addEventListener('click',async()=>{
+  const url=location.href;
+  if(navigator.share){try{await navigator.share({title:'Jara Holidays',text:'Pelancongan Muslim-friendly Langkawi & antarabangsa',url})}catch(_){}}
+  else{try{await navigator.clipboard.writeText(url);toast('Pautan disalin ke papan keratan.','success')}catch(_){toast('Tidak dapat salin pautan.','error')}}
+});
+
+/* ================= PARALLAX ================= */
+if(!reduceMotion){
+  let parallaxTicking=false;
+  window.addEventListener('scroll',()=>{
+    if(!parallaxTicking){
+      requestAnimationFrame(()=>{
+        const sc=window.scrollY;
+        const heroSlides=qs('#heroSlides');
+        if(heroSlides&&sc<window.innerHeight){
+          heroSlides.style.transform=`translateY(${sc*0.35}px)`;
+        }
+        const aboutImg=qs('#aboutImg');
+        if(aboutImg){
+          const rect=aboutImg.getBoundingClientRect();
+          if(rect.top<window.innerHeight&&rect.bottom>0){
+            const offset=(window.innerHeight-rect.top)*0.06;
+            aboutImg.style.transform=`translateY(${offset}px)`;
+          }
+        }
+        parallaxTicking=false;
+      });
+      parallaxTicking=true;
+    }
+  },{passive:true});
+}
+
+/* ================= 3D TILT PADA POSTER ================= */
+if(!isTouch&&!reduceMotion){
+  document.addEventListener('mousemove',e=>{
+    const frame=e.target.closest('.poster-frame');
+    if(!frame)return;
+    const rect=frame.getBoundingClientRect();
+    const x=(e.clientX-rect.left)/rect.width-0.5;
+    const y=(e.clientY-rect.top)/rect.height-0.5;
+    const baseRotate=parseFloat(frame.dataset.baseRotate||'0');
+    frame.style.transform=`rotate(${baseRotate}deg) rotateY(${x*6}deg) rotateX(${-y*6}deg) scale(1.02)`;
+  });
+  document.addEventListener('mouseover',e=>{
+    const frame=e.target.closest('.poster-frame');
+    if(frame)frame.dataset.hovering='1';
+  });
+  document.addEventListener('mouseout',e=>{
+    const frame=e.target.closest('.poster-frame');
+    if(frame){delete frame.dataset.hovering;frame.style.transform=''}
+  });
+}
+
+/* ================= SPOTLIGHT PADA DARK SECTION ================= */
+if(!isTouch&&!reduceMotion){
+  const darkSec=qs('#antarabangsa');
+  darkSec.addEventListener('mousemove',e=>{
+    const rect=darkSec.getBoundingClientRect();
+    darkSec.style.setProperty('--mx',(e.clientX-rect.left)+'px');
+    darkSec.style.setProperty('--my',(e.clientY-rect.top)+'px');
+  });
+}
+
+/* ================= MAGNETIC BUTTONS ================= */
+if(!isTouch&&!reduceMotion){
+  document.querySelectorAll('.btn-explore,.btn.primary,.nav-cta').forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      const rect=btn.getBoundingClientRect();
+      const x=e.clientX-rect.left-rect.width/2;
+      const y=e.clientY-rect.top-rect.height/2;
+      btn.style.setProperty('--mx',(x*0.2)+'px');
+      btn.style.setProperty('--my',(y*0.2)+'px');
+    });
+    btn.addEventListener('mouseleave',()=>{
+      btn.style.setProperty('--mx','0px');
+      btn.style.setProperty('--my','0px');
+    });
+  });
+}
+
+/* ================= COUNT-UP STATS ================= */
+const statObs=new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const stat=entry.target;
+      const target=parseFloat(stat.dataset.count);
+      const numEl=stat.querySelector('.stat-num');
+      const isFloat=target%1!==0;
+      const duration=1800;
+      const start=performance.now();
+      function update(now){
+        const p=Math.min((now-start)/duration,1);
+        const eased=1-Math.pow(1-p,3);
+        const v=target*eased;
+        numEl.textContent=isFloat?v.toFixed(1):Math.floor(v).toLocaleString();
+        if(p<1)requestAnimationFrame(update);
+        else numEl.textContent=isFloat?target.toFixed(1):target.toLocaleString();
+      }
+      requestAnimationFrame(update);
+      statObs.unobserve(stat);
+    }
+  });
+},{threshold:0.5});
+document.querySelectorAll('.stat').forEach(s=>statObs.observe(s));
+
+/* ================= DATA AKTIVITI LANGKAWI ================= */
+const ACTS=[
+ {key:'private',title:'Private Tour Langkawi',tagline:'Customized your way',badge:'Hot Selling',
+  img:'https://picsum.photos/seed/lkwprivate/700/525.jpg',
+  short:'Lawatan peribadi dengan pemandu lokal — tentukan sendiri laluan, masa dan tempat yang mahu dilawati.',
+  price:'RM180',unit:'/kereta',
+  desc:'Lupakan GPS. Driver kami membesar di pulau ini — dia tahu shortcut, warung sedap dan spot foto cantik yang tak ada dalam Google. Layanan peribadi, fleksibel sepenuhnya mengikut cita rasa anda.',
+  high:['Pemandu lokal yang tahu selok-belok pulau','Laluan & tempoh fleksibel (8–10 jam)','Pilihan kereta (4 pax) atau van (sehingga 10 pax)','Boleh gabung SkyCab, mangrove, Kuah, Cenang, Makam Mahsuri','Sesuai untuk keluarga, kumpulan kecil & warga emas'],
+  inc:'Termasuk kenderaan, driver & minyak. Tiket masuk tarikan tidak termasuk.'},
+ {key:'mangrove',title:'Mangrove Tour',tagline:'Kilim Geoforest Park',badge:null,
+  img:'https://picsum.photos/seed/lkwmangrove2/700/525.jpg',
+  short:'Perahu menembusi gua batu kapur, sesi memberi makan helang, dan ladang ikan terapung di hutan bakau.',
+  price:'RM65',unit:'/pax',
+  desc:'Menyusuri sungai bakau Kilim yang tersenarai sebagai Geoforest Park UNESCO — gua kapur berusia jutaan tahun, helang menjunam dari langit, dan kehidupan kampung laut yang tenang.',
+  high:['Perahu menembusi Gua Kelawu & Gua Buaya','Sesi memberi makan helang laut','Ladang ikan terapung — anak-anak suka','Teluk Yu & formasi karst "hole in the wall"','Pemandu yang menerangkan ekosistem bakau'],
+  inc:'Termasuk perahu & jurupandu lokal. Versi private RM480/van (hingga 6 pax, termasuk pengangkutan).'},
+ {key:'sunset',title:'Sunset Cruise',tagline:'Golden hour at sea',badge:null,
+  img:'https://picsum.photos/seed/lkwsunset/700/525.jpg',
+  short:'Pelayaran semasa matahari terbenam — BBQ halal di atas kapal, muzik akustik live dan jacuzzi air laut.',
+  price:'RM295',unit:'/pax',
+  desc:'Antara sunset terbaik di Malaysia, dinikmati dari atas kapal. Makan malam BBQ halal, muzik akustik live, dan net jacuzzi air laut yang menjadi kegemaran kanak-kanak — dan juga orang dewasa.',
+  high:['Makan malam BBQ halal di atas kapal','Salt-water jacuzzi net — kegemaran semua peringkat umur','Muzik akustik live semasa golden hour','Pelayaran sepanjang garis pantai barat pulau','Minuman selamat datang disediakan'],
+  inc:'Termasuk makan malam BBQ halal & welcome drink. Pindahan hotel–jeti RM30/pax (pilihan).'},
+ {key:'3in1',title:'3 In 1 Activities',tagline:'Island Hopping · Snorkel · Fishing',badge:null,
+  img:'https://picsum.photos/seed/lkw3in1/700/525.jpg',
+  short:'Tiga pengalaman laut dalam satu hari — island hopping, snorkeling dan sedikit sesi memancing.',
+  price:'RM180',unit:'/pax',
+  desc:'Satu hari, tiga aktiviti. Bot membawa anda ke pulau-pulau sekitar Langkawi untuk island hopping, berhenti di spot snorkeling yang cantik, dan sesi memancing ringkas di tengah laut.',
+  high:['Island hopping ke 3 pulau terpilih','Snorkeling di spot terumbu yang jernih','Sesi memancing ringkas — peralatan disediakan','Makan tengah hari halal di atas bot','Lengkap dengan jaket keselamatan'],
+  inc:'Termasuk bot, peralatan snorkel & pancing, makan tengah hari halal. Yuran marin RM10/pax dibayar di jeti.'},
+ {key:'jetski',title:'JetSki Tour Packages',tagline:'Island hopping on water',badge:null,
+  img:'https://picsum.photos/seed/lkwjetski/700/525.jpg',
+  short:'Jet ski anda sendiri — pandu dari Pulau Tuba ke teluk tersembunyi, dengan panduan profesional.',
+  price:'RM350',unit:'/jetski',
+  desc:'Bukan jetski biasa — ini island hopping dengan jetski. Pandu sendiri (atau bersama panduan) dari Pulau Tuba ke teluk-teluk tersembunyi yang bot biasa tak sampai. Tiada lesen diperlukan.',
+  high:['Jet ski anda sendiri (max 2 pax per ski)','Pandu ke Pulau Tuba & teluk tersembunyi','Panduan profesional di depan — pemula dialu-alukan','Tiada lesen diperlukan','Sesi foto & berenang di stopover'],
+  inc:'Termasuk jet ski, jaket keselamatan & panduan. Deposit RM100/ski dikembalikan selepas.'},
+ {key:'atv',title:'ATV Ride',tagline:'Off-road adventure',badge:'Hot Selling',
+  img:'https://picsum.photos/seed/lkwatv/700/525.jpg',
+  short:'Kembara merentas kebun getah, kampung dan denai berlumpur Gunung Raya. Untuk pencari adrenalin.',
+  price:'RM150',unit:'/pax',
+  desc:'Kembara off-road sebenar — merentas kebun getah, kampung tradisional dan denai berlumpur di kaki Gunung Raya. Untuk pencari adrenalin dan keluarga yang suka seronok. Brefing keselamatan diberikan sebelum mula.',
+  high:['Denai off-road merentas kebun getah & kampung','Pemanduan 60–90 minit','Pemandu profesional & brefing keselamatan','Sesuai untuk pemula & berpengalaman','Topi keledar & peralatan disediakan'],
+  inc:'Termasuk ATV, topi keledar & panduan. Kasut tertutup & baju lengan panjang digalakkan.'}
+];
+
+function renderActs(){
+  qs('#actGrid').innerHTML=ACTS.map(a=>`
+  <article class="act" data-act="${a.key}">
+    <div class="act-img">
+      <img loading="lazy" src="${a.img}" alt="${a.title}">
+      ${a.badge?`<span class="act-overlay-tag"><span class="badge">${a.badge}</span></span>`:''}
+    </div>
+    <div class="act-body">
+      <p class="act-tagline">${a.tagline}</p>
+      <h3 class="act-title">${a.title}</h3>
+      <p class="act-desc">${a.short}</p>
+      <div class="act-foot">
+        <span class="act-price">Mula <b>${a.price}</b><small>${a.unit}</small></span>
+        <div class="act-btns">
+          <button class="btn sm ghost" data-act-open="${a.key}">Butiran</button>
+          <a class="btn sm primary" target="_blank" rel="noopener" href="${waLink('Salam Jara Holidays! Saya berminat dengan '+a.title+' ('+a.price+a.unit+'). Boleh saya dapat info lanjut &amp; tempahan?')}">Tempah</a>
+        </div>
+      </div>
+    </div>
+  </article>`).join('');
+  refreshIcons();
+}
+renderActs();
+
+function openAct(key){
+  const a=ACTS.find(x=>x.key===key);if(!a)return;
+  qs('#actModalContent').innerHTML=`
+    <img class="act-modal-img" src="${a.img}" alt="${a.title}">
+    <div class="act-modal-inner">
+      <p class="act-modal-tagline">${a.tagline}</p>
+      <h3>${a.title}</h3>
+      <p class="act-modal-desc">${a.desc}</p>
+      <ul class="act-modal-high">${a.high.map(h=>`<li><i data-lucide="check"></i><span>${h}</span></li>`).join('')}</ul>
+      <p class="act-modal-inc">${a.inc}</p>
+      <div class="act-modal-price">Harga bermula <b>${a.price}</b><small>${a.unit}</small></div>
+      <a class="btn primary block" target="_blank" rel="noopener" href="${waLink('Salam Jara Holidays! Saya mahu tempah '+a.title+' ('+a.price+a.unit+'). Boleh saya dapat info ketersediaan?')}">Tempah Melalui WhatsApp <i data-lucide="message-circle"></i></a>
+    </div>`;
+  qs('#actModal').classList.add('show');
+  document.body.style.overflow='hidden';
+  refreshIcons();
+}
+document.addEventListener('click',e=>{
+  const b=e.target.closest('[data-act-open]');
+  if(b){openAct(b.dataset.actOpen)}
+  if(e.target.closest('[data-close="act"]')){qs('#actModal').classList.remove('show');document.body.style.overflow=''}
+  if(e.target.closest('.act')&&!e.target.closest('button')&&!e.target.closest('a')){
+    const art=e.target.closest('.act');
+    if(art.dataset.act)openAct(art.dataset.act);
+  }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){qs('#actModal').classList.remove('show');document.body.style.overflow=''}
+});
+
+/* ================= DATA PAKAJ ANTARABANGSA ================= */
+const DAYS_YUNNAN=[
+ {c:'Kunming',t:'Ketibaan di Bandar Musim Bunga',m:'Makan Malam',v:'Pesawat',vi:'plane-landing',a:['Penerbangan Kuala Lumpur → Kunming (Changshui)','Sambutan oleh tour leader Jara Holidays','Makan malam halal pertama — hidangan mi terkenal Yunnan','Check-in hotel & rehat']},
+ {c:'Dali',t:'Kereta Api Laju ke Dali',m:'Sarapan · Makan Malam',v:'Kereta Api Laju',vi:'train-front',a:['Sarapan halal di hotel','Kereta api laju Kunming → Dali (± 2 jam)','Lorong-lorong Bandar Lama Dali — senibina putih masyarakat Bai','Makan malam halal — barbeku tempatan']},
+ {c:'Dali',t:'Kapal Persiaran Tasik Erhai',m:'Sarapan · Tengah Hari · Malam',v:'Bas · Kapal',vi:'sailboat',a:['Pelayaran Tasik Erhai dengan latar gunung Cangshan','Kampung Xizhou — senibina tradisional etnik Bai','Upacara Teh Tiga Mangkuk (Sandao Cha)','Makan malam halal di Bandar Lama Dali']},
+ {c:'Shangri-La',t:'Menuju Tanah Tinggi',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan bas selesa ke Shangri-La (3,160 m)','Tiger Leaping Gorge — antara ngarai terdalam di dunia','Makan tengah hari halal sepanjang laluan','Bandar lama Dukezong waktu senja']},
+ {c:'Shangri-La',t:'Jantung Tibet Yunnan',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'mountain',a:['Biara Songzanlin — "Istana Potala Kecil"','Taman Negara Pudacuo & Tasik Shudu','Padang ragut yak & kampung Tibet','Makan malam halal di tanah tinggi']},
+ {c:'Lijiang',t:'Bandar Air yang Tua',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Bas merentasi pergunungan ke Lijiang (± 3 jam)','Bandar Lama Lijiang — Warisan Dunia UNESCO','Dataran Sifang & jaringan kanal batu','Makan malam halal masakan Naxi']},
+ {c:'Lijiang',t:'Gunung Salji Jade Dragon & Pulang',m:'Sarapan · Tengah Hari',v:'Gondola · Pesawat',vi:'plane-takeoff',a:['Gondola ke Glacier Park, Gunung Salji Jade Dragon (4,506 m)','Tasik biru Blue Moon Valley di kaki gunung','Makan tengah hari halal','Penerbangan pulang ke Kuala Lumpur']}
+];
+const STOPS_YUNNAN=[{city:'Kunming',days:'H1',from:1,to:1},{city:'Dali',days:'H2–3',from:2,to:3},{city:'Shangri-La',days:'H4–5',from:4,to:5},{city:'Lijiang',days:'H6–7',from:6,to:7}];
+const DAYS_BALKAN=[
+ {c:'Istanbul, Turkiye',t:'Ketibaan di Bandar Dua Benua',m:'Makan Malam',v:'Pesawat',vi:'plane-landing',a:['Penerbangan KL → Istanbul','Sambutan oleh tour leader Jara Holidays di lapangan terbang','Dinner cruise Bosphorus — makan malam sambil pelayaran antara dua benua','Check-in hotel & rehat']},
+ {c:'Istanbul, Turkiye',t:'Harta Karun Istanbul',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Hagia Sophia — masjid & muzium bersejarah','Masjid Biru (Sultan Ahmed)','Hipodrom & Basilica Yerebatan','Grand Bazaar — souq terbesar di dunia']},
+ {c:'Sofia, Bulgaria',t:'Penerbangan ke Sofia',m:'Sarapan · Makan Malam',v:'Pesawat · Bas',vi:'plane-landing',a:['Penerbangan Istanbul → Sofia','Masjid Banya Bashi — warisan Islam Bulgaria','Gereja St. George & Alexander Nevsky (luar)','Makan malam halal di Sofia']},
+ {c:'Skopje, Macedonia Utara',t:'Bandar Patung-Patung',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Sofia → Skopje','Stone Bridge & Old Bazaar — heritage Islam','Benteng Kale & cross Skopje','Makan tengah hari halal di Pasar Lama']},
+ {c:'Tirana, Albania',t:'Ibu Kota Mediterania',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Skopje → Tirana','Masjid Ethem Bey & Menara Jam','Bunkers & Muzium Nasional Albania','Makan malam halal di Tirana']},
+ {c:'Kotor, Montenegro',t:'Bay of Kotor (UNESCO)',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Tirana → Kotor','Bay of Kotor — salah satu fjord paling selatan','Menara climb ke Benteng Kotor (pilihan)','Bandar lama Kotor — Warisan UNESCO']},
+ {c:'Dubrovnik, Croatia',t:'Pearl of the Adriatic',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Kotor → Dubrovnik','Bandar lama Dubrovnik — Warisan Dunia UNESCO','City Walls walk (pilihan)','Stradun & lokasi pengambaran Game of Thrones']},
+ {c:'Mostar, Bosnia',t:'Jambatan Tua Mostar',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Dubrovnik → Mostar','Stari Most (Jambatan Tua) — simbol Bosnia','Old Bazaar Kujundziluk — heritage Islam','Makan tengah hari — hidangan Bosnia']},
+ {c:'Sarajevo, Bosnia',t:'Bandar Jerusalem Eropah',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Mostar → Sarajevo','Bandar lama Baščaršija & Masjid Gazi Husrev-bey','Terowong Tunnel of Hope — sejarah perang','Makan malam halal — ćevapi Bosnia']},
+ {c:'Pulang',t:'Sarajevo → Istanbul → KL',m:'Sarapan',v:'Pesawat',vi:'plane-takeoff',a:['Penerbangan Sarajevo → Istanbul','Transit & shopping akhir di Istanbul (jika masa mencukupi)','Penerbangan Istanbul → Kuala Lumpur','Tiba di KLIA']}
+];
+const STOPS_BALKAN=[{city:'Istanbul',days:'H1–2',from:1,to:2},{city:'Sofia',days:'H3',from:3,to:3},{city:'Skopje',days:'H4',from:4,to:4},{city:'Tirana',days:'H5',from:5,to:5},{city:'Kotor',days:'H6',from:6,to:6},{city:'Dubrovnik',days:'H7',from:7,to:7},{city:'Mostar',days:'H8',from:8,to:8},{city:'Sarajevo',days:'H9–10',from:9,to:10}];
+
+const INTL=[
+ {key:'yunnan',seri:'Siri 01 — Musim Sejuk',title:'Winter in Yunnan',sub:'Kunming · Dali · Shangri-La · Lijiang',date:'2–8 Disember 2026',dur:'7 Hari 6 Malam',
+  poster:POSTER_YUNNAN,fallback:FALLBACK_YUNNAN,rotate:-1.4,priceAdult:'RM4,999',priceChild:'RM4,799',
+  dep:new Date('2026-12-02T09:00:00+08:00').getTime(),status:'hot',statusLabel:'Pendaftaran Dibuka',
+  chips:['2–8 Dis 2026','7 Hari 6 Malam','Halal Sepanjang','Bas + Kereta Api Laju','Penerbangan Termasuk'],
+  high:['Pelayaran Tasik Erhai dengan latar gunung Cangshan','Gunung Salji Jade Dragon (4,506 m) — gondola ke puncak','Tiger Leaping Gorge — antara ngarai terdalam dunia','Biara Songzanlin — "Istana Potala Kecil" di Shangri-La','Kereta api laju Kunming → Dali','Bandar Lama Lijiang — Warisan Dunia UNESCO'],
+  inc:['Penerbangan pulang-pergi (KUL ⇄ Kunming / Lijiang)','Penginapan 6 malam','Makanan halal sepanjang perjalanan','Bas selesa & kereta api laju antara bandar','Tiket masuk & aktiviti seperti itinerary','Tour leader Jara Holidays & panduan tempatan berbahasa Melayu'],
+  days:DAYS_YUNNAN,stops:STOPS_YUNNAN,reverse:false,
+  waMsg:'Salam Jara Holidays! Saya berminat dengan Winter in Yunnan — 7 Hari 6 Malam (2–8 Disember 2026). Boleh saya dapat maklumat penuh & tempahan?'},
+ {key:'balkan',seri:'Siri 02 — Musim Bunga',title:'Balkan Tour + Istanbul',sub:'7 Negara · 10 Hari · Turkiye → Bosnia',date:'1–10 April 2027',dur:'10 Hari 9 Malam',
+  poster:POSTER_BALKAN,fallback:FALLBACK_BALKAN,rotate:1.4,priceAdult:'RM9,900',priceChild:'RM9,000',
+  dep:new Date('2027-04-01T09:00:00+08:00').getTime(),status:'open',statusLabel:'Buka Untuk Pendaftaran!',
+  chips:['1–10 Apr 2027','10 Hari 9 Malam','7 Negara','Halal Sepanjang','Penerbangan Termasuk'],
+  high:['Hagia Sophia & Masjid Biru di Istanbul','Bandar lama Dubrovnik (UNESCO) — "Pearl of the Adriatic"','Stari Most — jambatan tua simbol Mostar, Bosnia','Bay of Kotor — fjord paling selatan dunia (Montenegro)','Sarajevo — bandar bersejarah "Jerusalem Eropah"','Bosphorus Cruise di Istanbul — antara dua benua'],
+  inc:['Penerbangan pulang-pergi (KUL ⇄ IST + penerbangan antara bandar)','Penginapan 9 malam','Makanan halal sepanjang perjalanan','Bas selesa antara bandar','Tiket masuk & aktiviti seperti itinerary','Tour leader Jara Holidays & panduan tempatan'],
+  days:DAYS_BALKAN,stops:STOPS_BALKAN,reverse:true,
+  waMsg:'Salam Jara Holidays! Saya berminat dengan Balkan Tour + Istanbul — 10 Hari (1–10 April 2027). Boleh saya dapat maklumat penuh & pendaftaran?'}
+];
+
+const dayState={yunnan:1,balkan:1};
+
+function renderIntl(){
+  qs('#intlBlocks').innerHTML=INTL.map(p=>`
+  <article class="intl-block ${p.reverse?'reverse':''}" id="intl-${p.key}">
+    <figure class="intl-poster">
+      <div class="poster-frame" data-zoom="${p.key}" data-base-rotate="${p.rotate}" style="transform:rotate(${p.rotate}deg)">
+        <span class="tape t1"></span><span class="tape t2"></span>
+        <img src="${p.poster}" alt="Poster ${p.title}" onerror="this.onerror=null;this.src='${p.fallback}'">
+        <figcaption>Poster rasmi — klik untuk paparan penuh</figcaption>
+      </div>
+    </figure>
+    <div class="intl-info">
+      <p class="kicker light">${p.seri}</p>
+      <h3>${p.title}</h3>
+      <p class="intl-sub">${p.sub}</p>
+      <div class="chips">
+        <span class="chip ${p.status==='hot'?'hot':'open'}">${p.statusLabel}</span>
+        ${p.chips.map(c=>`<span class="chip">${c}</span>`).join('')}
+      </div>
+      <p class="count-mini"><i data-lucide="clock"></i> Berangkat dalam <b id="cd-${p.key}">— hari</b></p>
+      <ul class="intl-high">${p.high.slice(0,4).map(h=>`<li><i data-lucide="check"></i><span>${h}</span></li>`).join('')}</ul>
+      <div class="intl-price">
+        <div><small>Dewasa</small><strong>${p.priceAdult}</strong></div>
+        <div><small>Kanak-kanak</small><strong>${p.priceChild}</strong></div>
+      </div>
+      <div class="intl-cta">
+        <a class="btn primary" target="_blank" rel="noopener" href="${waLink(p.waMsg)}">Tempah Melalui WhatsApp <i data-lucide="message-circle"></i></a>
+        <button class="btn ghost" data-scroll-itin="intl-${p.key}">Lihat Itinerary</button>
+      </div>
+    </div>
+    <div class="itinerary" style="grid-column:1/-1">
+      <p class="kicker light">Itinerary — ${p.dur}</p>
+      <h4 class="itin-title">Rancangan perjalanan ${p.title}, hari demi hari.</h4>
+      <div class="route" id="route-${p.key}"></div>
+      <div class="day-pills" id="pills-${p.key}"></div>
+      <div class="day-panel" id="panel-${p.key}"></div>
+    </div>
+  </article>`).join('');
+  INTL.forEach(p=>renderDay(p.key));
+  refreshIcons();
+}
+
+function renderDay(key){
+  const p=INTL.find(x=>x.key===key);if(!p)return;
+  const day=dayState[key];
+  const d=p.days[day-1];
+  qs(`#pills-${key}`).innerHTML=p.days.map((_,i)=>`<button class="day-pill ${i+1===day?'active':''}" data-day="${i+1}" data-key="${key}">H${i+1}</button>`).join('');
+  qs(`#route-${key}`).innerHTML=p.stops.map(s=>`<button class="stop ${day>=s.from&&day<=s.to?'active':''}" data-day="${s.from}" data-key="${key}"><span class="dot2"></span><b>${s.city}</b><small>${s.days}</small></button>`).join('');
+  qs(`#panel-${key}`).innerHTML=`<div class="fade-in"><p class="dp-kicker"><i data-lucide="${d.vi}"></i> Hari ${day} / ${p.days.length} — ${d.c}</p><h4 class="dp-title">${d.t}</h4><ul class="dp-acts">${d.a.map(x=>`<li>${x}</li>`).join('')}</ul><div class="dp-meta"><span class="dp-tag"><i data-lucide="utensils"></i>${d.m} — semua halal</span><span class="dp-tag"><i data-lucide="${d.vi}"></i>${d.v}</span></div></div>`;
+  qsa(`#pills-${key} .day-pill`).forEach(b=>b.addEventListener('click',()=>{dayState[key]=+b.dataset.day;renderDay(key)}));
+  qsa(`#route-${key} .stop`).forEach(b=>b.addEventListener('click',()=>{dayState[key]=+b.dataset.day;renderDay(key)}));
+  refreshIcons();
+}
+renderIntl();
+
+qsa('[data-zoom]').forEach(el=>el.addEventListener('click',()=>{const key=el.dataset.zoom;const p=INTL.find(x=>x.key===key);if(p)window.open(p.poster,'_blank')}));
+qsa('[data-scroll-itin]').forEach(b=>b.addEventListener('click',()=>{const t=qs('#'+b.dataset.scrollItin+' .itinerary');if(t)t.scrollIntoView({behavior:'smooth',block:'center'})}));
+
+function tickCountdown(){
+  const now=Date.now();
+  INTL.forEach(p=>{
+    const el=qs('#cd-'+p.key);if(!el)return;
+    const diff=Math.max(0,p.dep-now);
+    const d=Math.floor(diff/864e5),h=Math.floor(diff/36e5)%24,m=Math.floor(diff/6e4)%60;
+    el.textContent=d>0?`${d} hari ${h} jam`:h>0?`${h} jam ${m} min`:`${m} min`;
+  });
+}
+tickCountdown();setInterval(tickCountdown,1000);
+
+const QUOTES=[
+ {q:'Kaptain private tour tu tahu masa terbaik elak orang ramai. Anak-anak saya sampai merajuk sebab tak nak balik.',w:'Aiman R.',s:'Kuala Lumpur — Private Tour Langkawi'},
+ {q:'Mangrove waktu pagi memang berbaloi. Masuk Gua Kelawu tu rasa macam jalan dalam dokumentari National Geographic.',w:'Sarah & Keluarga',s:'Pulau Pinang — Mangrove Tour'},
+ {q:'ATV ride tu… seronok gila. Baju putih kami masuk balik warna coklat. Tak kesah, berbaloi!',w:'Firdaus & Rakan',s:'Johor Bahru — ATV Ride'},
+ {q:'Sunset cruise… 10/10. Suami saya buat-buat romantic pula. Tahun depan anniversary, kami datang lagi.',w:'Mira & Suami',s:'Shah Alam — Sunset Cruise'}
+];
+let qi=0,qTimer;
+function showQuote(i){
+  qi=(i+QUOTES.length)%QUOTES.length;
+  const q=QUOTES[qi];
+  qs('#quoteBox').innerHTML=`<i data-lucide="quote" class="quote-mark"></i><blockquote class="quote-anim">${q.q}</blockquote><p class="quote-who quote-anim">${q.w}<span>${q.s}</span></p>`;
+  qsa('.q-dot').forEach((d,x)=>d.classList.toggle('active',x===qi));
+  refreshIcons();
+}
+qs('#qDots').innerHTML=QUOTES.map((_,i)=>`<span class="q-dot" data-i="${i}"></span>`).join('');
+qsa('.q-dot').forEach(d=>d.addEventListener('click',()=>{showQuote(+d.dataset.i);qAuto()}));
+qs('#qPrev').addEventListener('click',()=>{showQuote(qi-1);qAuto()});
+qs('#qNext').addEventListener('click',()=>{showQuote(qi+1);qAuto()});
+function qAuto(){clearInterval(qTimer);qTimer=setInterval(()=>showQuote(qi+1),6500)}
+showQuote(0);qAuto();
+qs('#quoteBox').addEventListener('mouseenter',()=>clearInterval(qTimer));
+qs('#quoteBox').addEventListener('mouseleave',qAuto);
+
+qs('#bookForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=qs('#f-name'),phone=qs('#f-phone');
+  let ok=true;
+  [name,phone].forEach(f=>{if(!f.value.trim()){f.classList.add('err');f.addEventListener('input',()=>f.classList.remove('err'));ok=false}});
+  if(!ok){toast('Nama dan no. WhatsApp diperlukan.','error');return}
+  const msg=['Salam Jara Holidays! Saya ingin buat tempahan:','• Nama: '+name.value.trim(),'• Telefon: '+phone.value.trim(),'• Aktiviti/Pakej: '+qs('#f-pkg').value,'• Tarikh: '+(qs('#f-date').value||'-'),'• Bilangan pax: '+(qs('#f-pax').value||'-'),'• Mesej: '+(qs('#f-msg').value.trim()||'-')].join('\n');
+  window.open(waLink(msg),'_blank');
+  toast('Membuka WhatsApp — hantar mesej yang telah disediakan.','success');
+  e.target.reset();
+});
+
+qs('#navWa').href=waLink('Salam Jara Holidays! Saya ada pertanyaan tentang aktiviti Langkawi & pakej antarabangsa.');
+qs('#cWa').href=waLink('Salam Jara Holidays! Saya ada pertanyaan.');
+qs('#allLangkawiWa').href=waLink('Salam Jara Holidays! Saya nak tanya tentang pakej Langkawi khas untuk kumpulan saya.');
+
+const nav=qs('#nav');
+addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
+qs('#burger').addEventListener('click',()=>qs('#mnav').classList.add('open'));
+qs('#mnavClose').addEventListener('click',()=>qs('#mnav').classList.remove('open'));
+qsa('#mnav a').forEach(a=>a.addEventListener('click',()=>qs('#mnav').classList.remove('open')));
+
+const secObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){qsa('.nav-links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}})},{rootMargin:'-40% 0px -55% 0px'});
+['langkawi','antarabangsa','tentang','tempahan'].forEach(id=>{const s=qs('#'+id);s&&secObs.observe(s)});
+
+const revObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');revObs.unobserve(e.target)}})},{threshold:.12});
+qsa('[data-reveal]').forEach(el=>revObs.observe(el));
+
+qs('#yr').textContent=new Date().getFullYear();
+refreshIcons();
+</script>
+</body>
+</html>
