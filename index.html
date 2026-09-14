@@ -14,6 +14,7 @@
   --border:#D2D2D7; --border-soft:#E8E8ED;
   --blue:#0071E3; --blue-hover:#0077ED; --blue-soft:#2997FF;
   --red:#FF3B30; --green:#34C759;
+  --amber-bg:#FFF4E0; --amber-text:#9A5B00; --amber-border:#F5D9A8;
   --shadow-sm:0 2px 8px rgba(0,0,0,.06);
   --shadow:0 4px 16px rgba(0,0,0,.08);
   --shadow-lg:0 12px 40px rgba(0,0,0,.12);
@@ -34,7 +35,7 @@ section{scroll-margin-top:84px}
 ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:#C7C7CC;border-radius:8px}
 h1,h2,h3,h4,.sec-title{font-weight:600;letter-spacing:-.03em;line-height:1.1}
 .kicker{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--blue)}
-.kicker.light{color:var(--blue-soft)}.kicker.coral{color:var(--blue)}
+.kicker.light{color:var(--blue-soft)}
 .btn{display:inline-flex;align-items:center;gap:.4rem;border-radius:980px;padding:.75rem 1.5rem;font-weight:500;font-size:.9rem;border:1.5px solid transparent;transition:all .25s cubic-bezier(.4,0,.2,1)}
 .btn svg{width:16px;height:16px}
 .btn.primary{background:var(--blue);color:#fff}
@@ -49,6 +50,7 @@ h1,h2,h3,h4,.sec-title{font-weight:600;letter-spacing:-.03em;line-height:1.1}
 [data-reveal].in{opacity:1;transform:none}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,59,48,.45)}70%{box-shadow:0 0 0 8px rgba(255,59,48,0)}}
+@keyframes urgencyPulse{0%,100%{opacity:1}50%{opacity:.55}}
 
 /* ============ PRELOADER ============ */
 .preloader{position:fixed;inset:0;z-index:10000;background:#000;display:grid;place-items:center;transition:opacity .7s ease,visibility .7s ease}
@@ -67,10 +69,9 @@ h1,h2,h3,h4,.sec-title{font-weight:600;letter-spacing:-.03em;line-height:1.1}
 
 /* ============ CUSTOM CURSOR ============ */
 .cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;mix-blend-mode:difference}
-.cursor-dot{width:6px;height:6px;background:#fff;margin:-3px 0 0 -3px;transition:opacity .2s}
+.cursor-dot{width:6px;height:6px;background:#fff;margin:-3px 0 0 -3px}
 .cursor-ring{width:36px;height:36px;border:1.5px solid rgba(255,255,255,.6);margin:-18px 0 0 -18px;transition:width .3s cubic-bezier(.16,1,.3,1),height .3s cubic-bezier(.16,1,.3,1),margin .3s cubic-bezier(.16,1,.3,1),background .3s,border-color .3s}
 .cursor-ring.grow{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.9)}
-.cursor-ring.shrink{width:20px;height:20px;margin:-10px 0 0 -10px}
 @media(hover:none),(max-width:860px){.cursor-dot,.cursor-ring{display:none}}
 
 /* ============ NAVIGASI ============ */
@@ -126,7 +127,7 @@ h1,h2,h3,h4,.sec-title{font-weight:600;letter-spacing:-.03em;line-height:1.1}
 .hero.loaded .hero-desc{opacity:1;transform:none}
 .hero-cta{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;opacity:0;transform:translateY(20px);transition:opacity .8s ease .8s,transform .8s cubic-bezier(.16,1,.3,1) .8s}
 .hero.loaded .hero-cta{opacity:1;transform:none}
-.btn-explore{--mx:0;--my:0;background:#fff;color:var(--text);padding:1rem 2rem;border-radius:980px;font-weight:600;font-size:1rem;display:inline-flex;align-items:center;gap:.55rem;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s,color .25s,box-shadow .25s;border:1.5px solid #fff;transform:translate(var(--mx),var(--my))}
+.btn-explore{--mx:0px;--my:0px;background:#fff;color:var(--text);padding:1rem 2rem;border-radius:980px;font-weight:600;font-size:1rem;display:inline-flex;align-items:center;gap:.55rem;transition:transform .25s cubic-bezier(.16,1,.3,1),background .25s,color .25s,box-shadow .25s;border:1.5px solid #fff;transform:translate(var(--mx),var(--my))}
 .btn-explore:hover{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 8px 24px rgba(0,113,227,.45)}
 .btn-explore svg{width:18px;height:18px;transition:transform .3s}
 .btn-explore:hover svg{transform:translateX(4px)}
@@ -170,7 +171,6 @@ h1,h2,h3,h4,.sec-title{font-weight:600;letter-spacing:-.03em;line-height:1.1}
 .section{padding:clamp(5rem,10vw,8rem) 0;position:relative}
 .section.dark{background:var(--bg-dark);color:var(--text-dark);overflow:hidden}
 .section.tint{background:var(--bg-alt)}
-/* Spotlight pada dark section */
 .section.dark::before{content:'';position:absolute;inset:0;background:radial-gradient(circle 500px at var(--mx,50%) var(--my,50%),rgba(0,113,227,.06),transparent 70%);pointer-events:none;z-index:0;transition:background-position .1s}
 .section.dark>.wrap{position:relative;z-index:1}
 .sec-head{max-width:720px;margin-bottom:3.5rem}
@@ -201,6 +201,7 @@ h1,h2,h3,h4,.sec-title{font-weight:600;letter-spacing:-.03em;line-height:1.1}
 .act-price small{font-size:.7rem;color:var(--text-3)}
 .act-btns{display:flex;gap:.5rem}
 .act-cta-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:2rem;justify-content:center}
+.act-note{text-align:center;font-size:.78rem;color:var(--text-3);margin-top:1.1rem;font-weight:300}
 
 /* ============ BAHAGIAN ANTARABANGSA ============ */
 .intl-block{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(2.2rem,4vw,4.5rem);align-items:start;margin-bottom:6rem;padding-bottom:6rem;border-bottom:1px solid var(--border-dark)}
@@ -321,7 +322,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
 .foot-links a:hover{color:var(--text-dark)}
 .foot-base{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1.7rem;font-size:.74rem;color:var(--text-dark-2);font-weight:300}
 
-/* ============ MODAL ============ */
+/* ============ MODAL + BOOKING ============ */
 .modal{position:fixed;inset:0;z-index:90;display:none;align-items:flex-start;justify-content:center;padding:5vh 1.5rem;overflow-y:auto}
 .modal.show{display:flex}
 .modal-back{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(8px)}
@@ -330,18 +331,75 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
 .modal-close svg{width:18px;height:18px}
 .modal-close:hover{background:var(--blue);border-color:var(--blue);color:#fff}
 .modal-content{background:var(--bg);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-xl)}
-.act-modal-img{width:100%;height:220px;object-fit:cover}
-.act-modal-inner{padding:2rem}
-.act-modal-inner h3{font-size:1.6rem;margin:.4rem 0 .8rem;font-weight:600;letter-spacing:-.02em}
+.act-modal-img{width:100%;height:200px;object-fit:cover}
+.act-modal-inner{padding:clamp(1.2rem,3vw,2rem)}
+.act-modal-inner h3{font-size:1.55rem;margin:.35rem 0 .7rem;font-weight:600;letter-spacing:-.02em}
 .act-modal-tagline{color:var(--blue);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;font-weight:600}
-.act-modal-desc{color:var(--text-2);margin-bottom:1.2rem;font-size:.94rem;font-weight:300}
-.act-modal-high{display:grid;gap:.5rem;margin-bottom:1.2rem}
-.act-modal-high li{display:flex;gap:.6rem;font-size:.88rem;align-items:flex-start}
+.act-modal-desc{color:var(--text-2);margin-bottom:1.1rem;font-size:.92rem;font-weight:300}
+.act-modal-high{display:grid;gap:.45rem;margin-bottom:1.2rem}
+.act-modal-high li{display:flex;gap:.6rem;font-size:.86rem;align-items:flex-start}
 .act-modal-high svg{width:15px;height:15px;color:var(--blue);flex:none;margin-top:4px}
 .act-modal-inc{font-size:.8rem;color:var(--text-2);border-left:2px solid var(--blue);padding-left:.85rem;margin-bottom:1.4rem;font-weight:300}
-.act-modal-price{display:flex;align-items:baseline;gap:.5rem;margin-bottom:1.4rem;font-size:.84rem;color:var(--text-2)}
-.act-modal-price b{font-size:1.5rem;color:var(--text);font-weight:600}
-.act-modal-price small{font-size:.7rem;color:var(--text-3)}
+
+/* ============ KAD PAKEJ (PACKAGE OPTIONS) ============ */
+.act-modal-tier-label{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--text-3);margin:0 0 .6rem}
+.tier-list{display:grid;gap:.65rem;margin-bottom:1.4rem}
+.tier{display:grid;grid-template-columns:auto 1fr auto;gap:.85rem;align-items:start;width:100%;padding:.9rem 1rem;border:1.5px solid var(--border);border-radius:14px;background:var(--bg);color:var(--text);transition:all .2s;text-align:left;cursor:pointer}
+.tier:hover{border-color:var(--text-2)}
+.tier.active{border-color:var(--blue);background:rgba(0,113,227,.05);box-shadow:0 0 0 3px rgba(0,113,227,.08)}
+.tier-check{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--border);display:grid;place-items:center;color:#fff;transition:.2s;margin-top:.15rem}
+.tier-check svg{width:11px;height:11px;opacity:0;transition:.15s}
+.tier.active .tier-check{background:var(--blue);border-color:var(--blue)}
+.tier.active .tier-check svg{opacity:1}
+.tier-info{min-width:0;display:block}
+.tier-selected-tag{display:none;font-size:.55rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+.tier.active .tier-selected-tag{display:inline-block}
+.tier-name{display:block;font-size:.95rem;font-weight:600;line-height:1.25}
+.tier.active .tier-name{color:var(--blue)}
+.tier-desc{display:grid;gap:.22rem;margin-top:.4rem;padding:0;list-style:none}
+.tier-desc.cols{grid-template-columns:1fr 1fr;gap:.22rem 1rem}
+.tier-desc li{font-size:.77rem;color:var(--text-2);font-weight:300;line-height:1.4;display:flex;gap:.45rem;align-items:flex-start}
+.tier-desc li::before{content:'✓';color:var(--green);font-weight:700;font-size:.72rem;flex:none}
+.tier-price{font-size:1.02rem;font-weight:700;white-space:nowrap;text-align:right;line-height:1.2;margin-top:.1rem}
+@media(max-width:600px){.tier-desc.cols{grid-template-columns:1fr}}
+
+/* Booking section dalam modal */
+.bk-section{border-top:1px solid var(--border-soft);padding-top:1.4rem;margin-top:.4rem}
+.bk-title{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--text-3);margin:0 0 .65rem}
+.bk-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:.8rem}
+.bk-field label{display:block;font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--text-3);margin-bottom:.3rem}
+.bk-field input,.bk-field select{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:.6rem .8rem;font:inherit;font-size:.88rem;color:var(--text);transition:.2s;appearance:none}
+.bk-field :focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,113,227,.12)}
+.bk-field input.err{border-color:var(--red);animation:shake .3s}
+.bk-summary{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;background:var(--bg-alt);border-radius:12px;padding:.75rem 1rem;font-size:.82rem;color:var(--text-2);margin-bottom:.8rem}
+.bk-summary b{color:var(--text);font-weight:600}
+.bk-urgency{display:flex;align-items:flex-start;gap:.55rem;background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:12px;padding:.7rem .95rem;font-size:.8rem;color:var(--amber-text);line-height:1.45;margin-bottom:.8rem}
+.bk-urgency svg{width:16px;height:16px;flex:none;margin-top:2px;animation:urgencyPulse 1.6s ease-in-out infinite}
+.bk-urgency b{font-weight:700}
+.bk-policy{display:grid;gap:.5rem;margin-bottom:1.2rem}
+.bk-policy li{display:flex;gap:.55rem;font-size:.8rem;color:var(--text-2);align-items:flex-start}
+.bk-policy svg{width:15px;height:15px;color:var(--green);flex:none;margin-top:3px}
+.bk-total{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1.2rem;padding-top:1.1rem;border-top:1px solid var(--border-soft)}
+.bk-total-label{font-size:.72rem;color:var(--text-3);font-weight:500}
+.bk-total-label b{display:block;font-size:.86rem;color:var(--text);font-weight:600;margin-top:.15rem}
+.bk-total-price{font-size:2rem;font-weight:700;letter-spacing:-.03em}
+.pay-btns{display:grid;gap:.6rem}
+.pay-btn{display:flex;align-items:center;justify-content:space-between;gap:.8rem;width:100%;border-radius:12px;padding:.85rem 1.1rem;font-weight:600;font-size:.92rem;transition:all .25s cubic-bezier(.4,0,.2,1);border:1.5px solid transparent}
+.pay-btn:hover{transform:translateY(-2px)}
+.pay-btn:disabled{opacity:.55;cursor:wait;transform:none}
+.pay-btn .pl{display:flex;align-items:center;gap:.65rem;text-align:left}
+.pay-btn .pl svg{width:20px;height:20px;flex:none}
+.pay-btn .pr{font-size:.68rem;font-weight:500;opacity:.75;text-align:right;line-height:1.3}
+.pay-fpx{background:#101720;color:#fff}
+.pay-fpx:hover{box-shadow:0 10px 26px rgba(16,23,32,.35)}
+.pay-card{background:var(--blue);color:#fff}
+.pay-card:hover{background:var(--blue-hover);box-shadow:0 10px 26px rgba(0,113,227,.4)}
+.pay-wa{background:var(--bg);border-color:var(--border);color:var(--text)}
+.pay-wa:hover{background:var(--bg-alt);border-color:var(--text-2)}
+.pay-secure{margin-top:.75rem;text-align:center;font-size:.7rem;color:var(--text-3);display:flex;align-items:center;justify-content:center;gap:.4rem}
+.pay-secure svg{width:13px;height:13px}
+.poa-box{background:var(--bg-alt);border-radius:14px;padding:1.2rem;text-align:center}
+.poa-box p{font-size:.86rem;color:var(--text-2);margin-bottom:1rem;font-weight:300}
 
 #toasts{position:fixed;bottom:1.4rem;right:1.4rem;z-index:100;display:flex;flex-direction:column;gap:.7rem;max-width:min(370px,90vw)}
 .toast{display:flex;gap:.8rem;align-items:flex-start;background:var(--bg-dark);color:var(--text-dark);border-radius:14px;padding:.9rem 1.1rem;box-shadow:var(--shadow-lg);animation:toastIn .4s cubic-bezier(.2,.9,.3,1.2) both;font-size:.88rem;border-left:3px solid var(--blue);font-weight:400}
@@ -370,17 +428,11 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
   .hero-eyebrow::before{width:24px}
   .hero-cta{gap:.8rem}
   .btn-explore{padding:.8rem 1.5rem;font-size:.88rem}
-  .hero-meta{font-size:.74rem;gap:1rem}
-  .hero-meta span{gap:.35rem}
-  .hero-meta svg{width:13px;height:13px}
   .hero-side{right:.85rem;gap:.55rem}
   .side-btn{width:38px;height:38px}
-  .side-btn svg{width:16px;height:16px}
   .hero-bottom{flex-direction:column;align-items:flex-start;gap:1.2rem}
   .dest-thumbs{gap:.6rem}
   .dest-thumb{width:70px;height:96px;border-radius:10px}
-  .dest-thumb-label{font-size:.62rem;bottom:.5rem;left:.5rem;right:.5rem}
-  .dest-thumb-label small{font-size:.5rem}
   .scroll-indicator{display:none}
 }
 @media(max-width:820px){
@@ -398,37 +450,31 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
   .hero-desc{font-size:.86rem;line-height:1.5}
   .hero-meta{display:none}
   .btn-explore{padding:.75rem 1.3rem;font-size:.82rem}
-  .hero-side{right:.7rem;gap:.45rem}
   .side-btn{width:36px;height:36px}
-  .side-btn svg{width:15px;height:15px}
   .dest-thumb{width:62px;height:86px}
-  .dest-thumb-label{font-size:.58rem}
-  .dest-thumb-label small{font-size:.46rem}
   .poster-frame{padding:8px 8px 40px;transform:rotate(0deg)!important}
   .poster-frame img{min-height:320px}
   .tape{width:68px;height:20px;top:-9px}
   .tape.t1{left:16px}.tape.t2{right:16px}
   .day-panel{padding:1.2rem 1.3rem;min-height:200px}
   .dp-title{font-size:1.15rem}
-  .dp-acts li{font-size:.82rem}
   .route{gap:.2rem}
   .stop{min-width:48px}
   .stop b{font-size:.72rem}
   .stop small{font-size:.5rem}
   .contact-list{gap:1.1rem}
   .c-ico{width:40px;height:40px}
-  .c-ico svg{width:16px;height:16px}
   .contact-list b{font-size:.92rem}
   .intl-price>div strong{font-size:1.35rem}
+  .bk-grid{grid-template-columns:1fr}
+  .act-modal-img{height:160px}
   .marquee-set{font-size:.6rem;gap:1.6rem;padding-right:1.6rem}
-  .marquee-set svg{width:11px;height:11px}
 }
 @media(max-width:560px){.act-grid{grid-template-columns:1fr}}
 @media(max-width:420px){
   .hero-title{font-size:clamp(1.8rem,14vw,3rem)}
   .hero-side{display:none}
   .dest-thumb{width:56px;height:78px}
-  .hero-eyebrow::before{width:18px}
   .hero-eyebrow{font-size:.6rem}
 }
 @media(prefers-reduced-motion:reduce){
@@ -440,12 +486,12 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
   .preloader{display:none}
   .hero-title .letter{opacity:1!important;transform:none!important}
   .hero-eyebrow,.hero-desc,.hero-cta,.hero-side,.hero-bottom{opacity:1!important;transform:none!important}
+  .bk-urgency svg{animation:none}
 }
 </style>
 </head>
 <body>
 
-<!-- Preloader -->
 <div class="preloader" id="preloader">
   <div class="preloader-inner">
     <div class="preloader-logo">JARA<span class="dot">.</span></div>
@@ -454,10 +500,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
   </div>
 </div>
 
-<!-- Scroll progress bar -->
 <div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- Custom cursor -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
@@ -486,15 +529,9 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
 
 <header class="hero" id="atas">
   <div class="hero-slides" id="heroSlides">
-    <div class="hero-slide active" data-dest="langkawi">
-      <img src="https://picsum.photos/seed/langkawibeach/1920/1200.jpg" alt="Langkawi">
-    </div>
-    <div class="hero-slide" data-dest="yunnan">
-      <img src="https://picsum.photos/seed/yunnansnowmt/1920/1200.jpg" alt="Yunnan">
-    </div>
-    <div class="hero-slide" data-dest="balkan">
-      <img src="https://picsum.photos/seed/istanbulsunset/1920/1200.jpg" alt="Balkan">
-    </div>
+    <div class="hero-slide active" data-dest="langkawi"><img src="https://picsum.photos/seed/langkawibeach/1920/1200.jpg" alt="Langkawi"></div>
+    <div class="hero-slide" data-dest="yunnan"><img src="https://picsum.photos/seed/yunnansnowmt/1920/1200.jpg" alt="Yunnan"></div>
+    <div class="hero-slide" data-dest="balkan"><img src="https://picsum.photos/seed/istanbulsunset/1920/1200.jpg" alt="Balkan"></div>
   </div>
   <div class="hero-side">
     <button class="side-btn" id="sideHeart" aria-label="Suka"><i data-lucide="heart"></i></button>
@@ -517,23 +554,11 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
     </div>
     <div class="hero-bottom">
       <div class="dest-thumbs">
-        <button class="dest-thumb active" data-dest="langkawi">
-          <img src="https://picsum.photos/seed/lkwthumb/200/270.jpg" alt="Langkawi">
-          <span class="dest-thumb-label">Langkawi<small>99 Pulau</small></span>
-        </button>
-        <button class="dest-thumb" data-dest="yunnan">
-          <img src="https://picsum.photos/seed/yunnthumb/200/270.jpg" alt="Yunnan">
-          <span class="dest-thumb-label">Yunnan<small>Musim Sejuk</small></span>
-        </button>
-        <button class="dest-thumb" data-dest="balkan">
-          <img src="https://picsum.photos/seed/balkthumb/200/270.jpg" alt="Balkan">
-          <span class="dest-thumb-label">Balkan<small>7 Negara</small></span>
-        </button>
+        <button class="dest-thumb active" data-dest="langkawi"><img src="https://picsum.photos/seed/lkwthumb/200/270.jpg" alt="Langkawi"><span class="dest-thumb-label">Langkawi<small>99 Pulau</small></span></button>
+        <button class="dest-thumb" data-dest="yunnan"><img src="https://picsum.photos/seed/yunnthumb/200/270.jpg" alt="Yunnan"><span class="dest-thumb-label">Yunnan<small>Musim Sejuk</small></span></button>
+        <button class="dest-thumb" data-dest="balkan"><img src="https://picsum.photos/seed/balkthumb/200/270.jpg" alt="Balkan"><span class="dest-thumb-label">Balkan<small>7 Negara</small></span></button>
       </div>
-      <div class="scroll-indicator">
-        <span>Scroll</span>
-        <span class="scroll-line"></span>
-      </div>
+      <div class="scroll-indicator"><span>Scroll</span><span class="scroll-line"></span></div>
     </div>
   </div>
 </header>
@@ -543,7 +568,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
     <div class="marquee-set">
       <span>Muslim-friendly — halal sepanjang perjalanan</span><i data-lucide="snowflake"></i>
       <span>Berlesen MOTAC 600-4/2/13272</span><i data-lucide="sun"></i>
-      <span>Harga jelas, tiada kos tersembunyi</span><i data-lucide="snowflake"></i>
+      <span>Bayar online — FPX &amp; kad</span><i data-lucide="snowflake"></i>
       <span>Krew lokal Langkawi</span><i data-lucide="sun"></i>
       <span>WhatsApp dibalas dalam 15 minit</span><i data-lucide="snowflake"></i>
       <span>Dari Langkawi ke dunia</span><i data-lucide="sun"></i>
@@ -551,7 +576,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
     <div class="marquee-set">
       <span>Muslim-friendly — halal sepanjang perjalanan</span><i data-lucide="snowflake"></i>
       <span>Berlesen MOTAC 600-4/2/13272</span><i data-lucide="sun"></i>
-      <span>Harga jelas, tiada kos tersembunyi</span><i data-lucide="snowflake"></i>
+      <span>Bayar online — FPX &amp; kad</span><i data-lucide="snowflake"></i>
       <span>Krew lokal Langkawi</span><i data-lucide="sun"></i>
       <span>WhatsApp dibalas dalam 15 minit</span><i data-lucide="snowflake"></i>
       <span>Dari Langkawi ke dunia</span><i data-lucide="sun"></i>
@@ -565,9 +590,10 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
     <div class="sec-head center" data-reveal>
       <p class="kicker">( 01 ) — Aktiviti Langkawi</p>
       <h2 class="sec-title">Top Rated <em>Activities</em></h2>
-      <p class="sec-intro">Alami yang terbaik di Pulau Langkawi bersama aktiviti tertinggi rated kami — daripada lawatan persendirian yang fleksibel sehingga kembara air dan denai off-road yang mendebarkan.</p>
+      <p class="sec-intro">Pilih tarikh &amp; masa, tempah terus dalam website — bayar dengan online banking (FPX) atau kad. Atau rizab dahulu tanpa bayaran, kami sahkan dulu.</p>
     </div>
     <div class="act-grid" id="actGrid" data-reveal></div>
+    <p class="act-note" data-reveal>Semua harga dalam MYR. Pembayaran diproses selamat melalui ToyyibPay (FPX) &amp; Stripe (kad). Pakej khas kumpulan — tanya di WhatsApp.</p>
     <div class="act-cta-row" data-reveal>
       <a class="btn ghost" target="_blank" rel="noopener" id="allLangkawiWa" href="#"><i data-lucide="message-circle"></i> Tanya pakej Langkawi khas</a>
     </div>
@@ -651,12 +677,12 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
           <label for="f-pkg">Pilih Aktiviti / Pakej</label>
           <select id="f-pkg">
             <optgroup label="Aktiviti Langkawi">
-              <option>Private Tour Langkawi</option>
-              <option>Mangrove Tour</option>
+              <option>Tour Langkawi — Sedan/MPV dengan Pemandu</option>
+              <option>Mangrove Tour — Bot (Pakej A–D / Private)</option>
+              <option>JetSki Mangrove Tour — 9 Checkpoint</option>
               <option>Sunset Cruise</option>
-              <option>3 In 1 Activities</option>
-              <option>JetSki Tour Packages</option>
-              <option>ATV Ride</option>
+              <option>3 In 1 Activities — Jet Car · Parasailing · Banana Boat</option>
+              <option>ATV Ride — Paddy &amp; Beach</option>
             </optgroup>
             <optgroup label="Siri Antarabangsa">
               <option>Winter in Yunnan — 7 Hari 6 Malam (Dis 2026)</option>
@@ -697,7 +723,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
     </div>
     <div class="foot-base">
       <p>© <span id="yr"></span> Jara Holidays. Hak cipta terpelihara.</p>
-      <p>Harga tertakluk kepada terma &amp; syarat. Imej untuk ilustrasi.</p>
+      <p>Harga tertakluk kepada terma &amp; syarat. Pembayaran diproses oleh ToyyibPay &amp; Stripe.</p>
     </div>
   </div>
 </footer>
@@ -714,6 +740,26 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
 
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script>
+/* ============================================================
+   KONFIGURASI PEMBAYARAN — ISI SEBELUM LIVE!
+   1) TOYYIBPAY (FPX): daftar di toyyibpay.com, ambil
+      "User Secret Key" + "Category Code" dari dashboard.
+      sandbox:true = mode ujian (dev.toyyibpay.com)
+   2) STRIPE (kad): perlukan endpoint backend kecil yang cipta
+      Checkout Session — contoh kod backend ada di bawah fail.
+============================================================ */
+const PAYMENT={
+  toyyibpay:{
+    secretKey:'',      // <-- ISI: user secret key ToyyibPay
+    categoryCode:'',   // <-- ISI: category code ToyyibPay
+    sandbox:true       // true = ujian, false = live
+  },
+  stripe:{
+    publishableKey:'',  // <-- ISI: pk_live_... (pilihan)
+    checkoutEndpoint:'' // <-- ISI: URL backend cipta Checkout Session
+  }
+};
+
 const WA='60123659345';
 const POSTER_YUNNAN='https://z-cdn-media.chatglm.cn/files/9426b3f6-c705-4295-ba85-20c54777209b.png?auth_key=1887538547-f4426e4deb2240dc9a294ac75c29f2ec-0-aa310b0677a3713043d0801d4893421d';
 const POSTER_BALKAN='https://z-cdn-media.chatglm.cn/files/43e27dcb-ae80-4bc6-8d30-403295d3c1d9.png?auth_key=1887540538-068d7d8bcbc246bc9f3472af207ef0ee-0-8cb32546ee4b454f0ef763731f539d3c';
@@ -726,6 +772,7 @@ const refreshIcons=()=>window.lucide&&lucide.createIcons();
 const waLink=m=>`https://wa.me/${WA}?text=${encodeURIComponent(m)}`;
 const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch=matchMedia('(hover:none)').matches;
+const rmPrice=p=>parseFloat(String(p).replace(/RM/g,'').replace(/,/g,'').trim());
 
 function toast(msg,type='info'){
   const box=qs('#toasts');
@@ -733,8 +780,16 @@ function toast(msg,type='info'){
   el.className='toast '+type;
   el.innerHTML=`<i data-lucide="${type==='success'?'check':type==='error'?'x':'info'}"></i><span>${msg}</span>`;
   box.appendChild(el);refreshIcons();
-  setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),320)},3800);
+  setTimeout(()=>{el.classList.add('out');setTimeout(()=>el.remove(),320)},4600);
 }
+
+/* Notifikasi status bayaran balik dari gateway (query param) */
+(function checkPaymentReturn(){
+  const p=new URLSearchParams(location.search);
+  if(p.get('status_id')==='1')toast('Pembayaran berjaya! Jara Holidays akan hubungi anda untuk pengesahan tempahan. Terima kasih!','success');
+  else if(p.get('status_id')==='3')toast('Pembayaran tidak selesai / dibatalkan. Tiada caj dibuat.','error');
+  else if(p.get('payment')==='cancel')toast('Pembayaran dibatalkan.','error');
+})();
 
 /* ================= PRELOADER ================= */
 window.addEventListener('load',()=>{
@@ -748,254 +803,179 @@ window.addEventListener('load',()=>{
 if(!isTouch&&!reduceMotion){
   const dot=qs('#cursorDot'),ring=qs('#cursorRing');
   let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove',e=>{
-    mx=e.clientX;my=e.clientY;
-    dot.style.transform=`translate(${mx}px,${my}px)`;
-  });
-  function ringLoop(){
-    rx+=(mx-rx)*0.18;
-    ry+=(my-ry)*0.18;
-    ring.style.transform=`translate(${rx}px,${ry}px)`;
-    requestAnimationFrame(ringLoop);
-  }
-  ringLoop();
-  const interactive='a,button,.act,.dest-thumb,.poster-frame,.day-pill,.stop,.stat,.q-btn,.q-dot,.side-btn';
-  document.addEventListener('mouseover',e=>{
-    if(e.target.closest(interactive))ring.classList.add('grow');
-  });
-  document.addEventListener('mouseout',e=>{
-    if(e.target.closest(interactive))ring.classList.remove('grow');
-  });
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx}px,${my}px)`});
+  (function loop(){rx+=(mx-rx)*0.18;ry+=(my-ry)*0.18;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(loop)})();
+  const inter='a,button,.act,.dest-thumb,.poster-frame,.day-pill,.stop,.stat,.q-btn,.q-dot,.side-btn,.tier,.pay-btn,.bk-field input,.bk-field select';
+  document.addEventListener('mouseover',e=>{if(e.target.closest(inter))ring.classList.add('grow')});
+  document.addEventListener('mouseout',e=>{if(e.target.closest(inter))ring.classList.remove('grow')});
 }
 
 /* ================= SCROLL PROGRESS ================= */
 const progress=qs('#scrollProgress');
-let scrollTicking=false;
+let sTick=false;
 window.addEventListener('scroll',()=>{
-  if(!scrollTicking){
-    requestAnimationFrame(()=>{
-      const scrolled=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
-      progress.style.width=scrolled+'%';
-      scrollTicking=false;
-    });
-    scrollTicking=true;
-  }
+  if(!sTick){requestAnimationFrame(()=>{
+    progress.style.width=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100+'%';sTick=false});
+    sTick=true}
 },{passive:true});
 
-/* ================= HERO LETTER SPLIT ================= */
+/* ================= HERO ================= */
 function splitLetters(el){
-  const text=el.textContent;
-  el.innerHTML='';
-  [...text].forEach((char,i)=>{
-    const span=document.createElement('span');
-    span.className='letter';
-    span.textContent=char;
-    span.style.transitionDelay=(0.3+i*0.05)+'s';
-    el.appendChild(span);
-  });
+  const text=el.textContent;el.innerHTML='';
+  [...text].forEach((ch,i)=>{const s=document.createElement('span');s.className='letter';s.textContent=ch;s.style.transitionDelay=(0.3+i*0.05)+'s';el.appendChild(s)});
 }
 splitLetters(qs('#heroTitle'));
 
-/* ================= HERO DESTINATION SWITCHER ================= */
 const DESTS={
-  langkawi:{eyebrow:'Jara Holidays — Aktiviti Langkawi',title:'LANGKAWI',
-    desc:'99 pulau magik di utara Selat Melaka. Pantai pasir putih, hutan bakau berusia jutaan tahun, helang menjunam dari langit — semuanya tunggu di rumah kami.',
-    loc:'Kedah, Malaysia',rating:'4.9',goto:'#langkawi'},
-  yunnan:{eyebrow:'Siri Antarabangsa — Musim Sejuk 2026',title:'YUNNAN',
-    desc:'Kunming, Dali, Shangri-La, Lijiang. Salji, ngarai terdalam dunia, biara Tibet di tanah tinggi, dan kereta api laju merantas pergunungan China.',
-    loc:'Yunnan, China',rating:'7H6M',goto:'#antarabangsa'},
-  balkan:{eyebrow:'Siri Antarabangsa — Musim Bunga 2027',title:'BALKAN',
-    desc:'7 negara, 10 hari. Istanbul, Dubrovnik, Mostar, Sarajevo. Masjid bersejarah, fjord Montenegro, dan bandar lama UNESCO Eropah.',
-    loc:'Turkiye → Bosnia',rating:'10 Hari',goto:'#antarabangsa'}
+  langkawi:{eyebrow:'Jara Holidays — Aktiviti Langkawi',title:'LANGKAWI',desc:'99 pulau magik di utara Selat Melaka. Pantai pasir putih, hutan bakau berusia jutaan tahun, helang menjunam dari langit — semuanya tunggu di rumah kami.',loc:'Kedah, Malaysia',rating:'4.9',goto:'#langkawi'},
+  yunnan:{eyebrow:'Siri Antarabangsa — Musim Sejuk 2026',title:'YUNNAN',desc:'Kunming, Dali, Shangri-La, Lijiang. Salji, ngarai terdalam dunia, biara Tibet di tanah tinggi, dan kereta api laju merentas pergunungan China.',loc:'Yunnan, China',rating:'7H6M',goto:'#antarabangsa'},
+  balkan:{eyebrow:'Siri Antarabangsa — Musim Bunga 2027',title:'BALKAN',desc:'7 negara, 10 hari. Istanbul, Dubrovnik, Mostar, Sarajevo. Masjid bersejarah, fjord Montenegro, dan bandar lama UNESCO Eropah.',loc:'Turkiye → Bosnia',rating:'10 Hari',goto:'#antarabangsa'}
 };
 let currentDest='langkawi',autoTimer;
-
 function switchDest(key){
   if(key===currentDest)return;
-  currentDest=key;
-  const d=DESTS[key];
+  currentDest=key;const d=DESTS[key];
   qsa('.hero-slide').forEach(s=>s.classList.toggle('active',s.dataset.dest===key));
   qsa('.dest-thumb').forEach(t=>t.classList.toggle('active',t.dataset.dest===key));
-  const main=qs('#heroMain');
-  main.classList.add('switching');
+  const main=qs('#heroMain');main.classList.add('switching');
   setTimeout(()=>{
     qs('#heroEyebrow').textContent=d.eyebrow;
-    qs('#heroTitle').textContent=d.title;
-    splitLetters(qs('#heroTitle'));
-    qs('#heroDesc').textContent=d.desc;
-    qs('#heroLoc').textContent=d.loc;
-    qs('#heroRating').textContent=d.rating;
-    qs('#heroExplore').dataset.goto=d.goto;
+    qs('#heroTitle').textContent=d.title;splitLetters(qs('#heroTitle'));
+    qs('#heroDesc').textContent=d.desc;qs('#heroLoc').textContent=d.loc;
+    qs('#heroRating').textContent=d.rating;qs('#heroExplore').dataset.goto=d.goto;
     main.classList.remove('switching');
   },350);
 }
 qsa('.dest-thumb').forEach(t=>t.addEventListener('click',()=>{clearInterval(autoTimer);switchDest(t.dataset.dest)}));
 qsa('[data-goto]').forEach(el=>el.addEventListener('click',()=>{const t=qs(el.dataset.goto);t&&t.scrollIntoView({behavior:'smooth'})}));
-
-if(!reduceMotion){autoTimer=setInterval(()=>{const keys=['langkawi','yunnan','balkan'];const idx=keys.indexOf(currentDest);switchDest(keys[(idx+1)%keys.length])},6500)}
+if(!reduceMotion){autoTimer=setInterval(()=>{const k=['langkawi','yunnan','balkan'];switchDest(k[(k.indexOf(currentDest)+1)%k.length])},6500)}
 qs('.hero').addEventListener('pointerdown',()=>clearInterval(autoTimer),{once:true});
 
-qs('#sideHeart').addEventListener('click',function(){
-  this.classList.toggle('liked');
-  toast(this.classList.contains('liked')?'Ditambah ke kegemaran!':'Dikeluarkan dari kegemaran.','success');
-});
-qs('#sideSave').addEventListener('click',function(){
-  const saved=this.classList.toggle('saved');
-  toast(saved?'Disimpan untuk kemudian.':'Dikeluarkan dari simpanan.','success');
-});
+qs('#sideHeart').addEventListener('click',function(){this.classList.toggle('liked');toast(this.classList.contains('liked')?'Ditambah ke kegemaran!':'Dikeluarkan dari kegemaran.','success')});
+qs('#sideSave').addEventListener('click',function(){const s=this.classList.toggle('saved');toast(s?'Disimpan untuk kemudian.':'Dikeluarkan dari simpanan.','success')});
 qs('#sideShare').addEventListener('click',async()=>{
   const url=location.href;
   if(navigator.share){try{await navigator.share({title:'Jara Holidays',text:'Pelancongan Muslim-friendly Langkawi & antarabangsa',url})}catch(_){}}
   else{try{await navigator.clipboard.writeText(url);toast('Pautan disalin ke papan keratan.','success')}catch(_){toast('Tidak dapat salin pautan.','error')}}
 });
 
-/* ================= PARALLAX ================= */
+/* ================= PARALLAX / TILT / SPOTLIGHT ================= */
 if(!reduceMotion){
-  let parallaxTicking=false;
+  let pT=false;
   window.addEventListener('scroll',()=>{
-    if(!parallaxTicking){
-      requestAnimationFrame(()=>{
-        const sc=window.scrollY;
-        const heroSlides=qs('#heroSlides');
-        if(heroSlides&&sc<window.innerHeight){
-          heroSlides.style.transform=`translateY(${sc*0.35}px)`;
-        }
-        const aboutImg=qs('#aboutImg');
-        if(aboutImg){
-          const rect=aboutImg.getBoundingClientRect();
-          if(rect.top<window.innerHeight&&rect.bottom>0){
-            const offset=(window.innerHeight-rect.top)*0.06;
-            aboutImg.style.transform=`translateY(${offset}px)`;
-          }
-        }
-        parallaxTicking=false;
-      });
-      parallaxTicking=true;
-    }
+    if(!pT){requestAnimationFrame(()=>{
+      const sc=window.scrollY;
+      const hs=qs('#heroSlides');
+      if(hs&&sc<window.innerHeight)hs.style.transform=`translateY(${sc*0.35}px)`;
+      const ai=qs('#aboutImg');
+      if(ai){const r=ai.getBoundingClientRect();
+        if(r.top<window.innerHeight&&r.bottom>0)ai.style.transform=`translateY(${(window.innerHeight-r.top)*0.06}px)`}
+      pT=false});pT=true}
   },{passive:true});
 }
-
-/* ================= 3D TILT PADA POSTER ================= */
 if(!isTouch&&!reduceMotion){
   document.addEventListener('mousemove',e=>{
-    const frame=e.target.closest('.poster-frame');
-    if(!frame)return;
-    const rect=frame.getBoundingClientRect();
-    const x=(e.clientX-rect.left)/rect.width-0.5;
-    const y=(e.clientY-rect.top)/rect.height-0.5;
-    const baseRotate=parseFloat(frame.dataset.baseRotate||'0');
-    frame.style.transform=`rotate(${baseRotate}deg) rotateY(${x*6}deg) rotateX(${-y*6}deg) scale(1.02)`;
+    const f=e.target.closest('.poster-frame');
+    if(!f)return;
+    const r=f.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-0.5,y=(e.clientY-r.top)/r.height-0.5;
+    f.style.transform=`rotate(${parseFloat(f.dataset.baseRotate||'0')}deg) rotateY(${x*6}deg) rotateX(${-y*6}deg) scale(1.02)`;
   });
-  document.addEventListener('mouseover',e=>{
-    const frame=e.target.closest('.poster-frame');
-    if(frame)frame.dataset.hovering='1';
+  document.addEventListener('mouseout',e=>{const f=e.target.closest('.poster-frame');if(f)f.style.transform=''});
+  const dark=qs('#antarabangsa');
+  dark.addEventListener('mousemove',e=>{
+    const r=dark.getBoundingClientRect();
+    dark.style.setProperty('--mx',(e.clientX-r.left)+'px');
+    dark.style.setProperty('--my',(e.clientY-r.top)+'px');
   });
-  document.addEventListener('mouseout',e=>{
-    const frame=e.target.closest('.poster-frame');
-    if(frame){delete frame.dataset.hovering;frame.style.transform=''}
-  });
-}
-
-/* ================= SPOTLIGHT PADA DARK SECTION ================= */
-if(!isTouch&&!reduceMotion){
-  const darkSec=qs('#antarabangsa');
-  darkSec.addEventListener('mousemove',e=>{
-    const rect=darkSec.getBoundingClientRect();
-    darkSec.style.setProperty('--mx',(e.clientX-rect.left)+'px');
-    darkSec.style.setProperty('--my',(e.clientY-rect.top)+'px');
-  });
-}
-
-/* ================= MAGNETIC BUTTONS ================= */
-if(!isTouch&&!reduceMotion){
-  document.querySelectorAll('.btn-explore,.btn.primary,.nav-cta').forEach(btn=>{
+  document.querySelectorAll('.btn-explore').forEach(btn=>{
     btn.addEventListener('mousemove',e=>{
-      const rect=btn.getBoundingClientRect();
-      const x=e.clientX-rect.left-rect.width/2;
-      const y=e.clientY-rect.top-rect.height/2;
-      btn.style.setProperty('--mx',(x*0.2)+'px');
-      btn.style.setProperty('--my',(y*0.2)+'px');
+      const r=btn.getBoundingClientRect();
+      btn.style.setProperty('--mx',((e.clientX-r.left-r.width/2)*0.2)+'px');
+      btn.style.setProperty('--my',((e.clientY-r.top-r.height/2)*0.2)+'px');
     });
-    btn.addEventListener('mouseleave',()=>{
-      btn.style.setProperty('--mx','0px');
-      btn.style.setProperty('--my','0px');
-    });
+    btn.addEventListener('mouseleave',()=>{btn.style.setProperty('--mx','0px');btn.style.setProperty('--my','0px')});
   });
 }
 
-/* ================= COUNT-UP STATS ================= */
-const statObs=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      const stat=entry.target;
-      const target=parseFloat(stat.dataset.count);
-      const numEl=stat.querySelector('.stat-num');
-      const isFloat=target%1!==0;
-      const duration=1800;
-      const start=performance.now();
-      function update(now){
-        const p=Math.min((now-start)/duration,1);
-        const eased=1-Math.pow(1-p,3);
-        const v=target*eased;
-        numEl.textContent=isFloat?v.toFixed(1):Math.floor(v).toLocaleString();
-        if(p<1)requestAnimationFrame(update);
-        else numEl.textContent=isFloat?target.toFixed(1):target.toLocaleString();
-      }
-      requestAnimationFrame(update);
-      statObs.unobserve(stat);
+/* ================= COUNT-UP ================= */
+const statObs=new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(en.isIntersecting){
+      const t=parseFloat(en.target.dataset.count),el=en.target.querySelector('.stat-num'),fl=t%1!==0,s0=performance.now();
+      (function u(n){const p=Math.min((n-s0)/1800,1),e=1-Math.pow(1-p,3),v=t*e;
+        el.textContent=fl?v.toFixed(1):Math.floor(v).toLocaleString();
+        if(p<1)requestAnimationFrame(u);else el.textContent=fl?t.toFixed(1):t.toLocaleString()})(s0);
+      statObs.unobserve(en.target);
     }
   });
-},{threshold:0.5});
+},{threshold:.5});
 document.querySelectorAll('.stat').forEach(s=>statObs.observe(s));
 
 /* ================= DATA AKTIVITI LANGKAWI ================= */
+const TIME_SLOTS=['9:00 AM','10:00 AM','11:00 AM','2:00 PM','3:00 PM','4:00 PM'];
 const ACTS=[
- {key:'private',title:'Private Tour Langkawi',tagline:'Customized your way',badge:'Hot Selling',
-  img:'https://picsum.photos/seed/lkwprivate/700/525.jpg',
-  short:'Lawatan peribadi dengan pemandu lokal — tentukan sendiri laluan, masa dan tempat yang mahu dilawati.',
-  price:'RM180',unit:'/kereta',
-  desc:'Lupakan GPS. Driver kami membesar di pulau ini — dia tahu shortcut, warung sedap dan spot foto cantik yang tak ada dalam Google. Layanan peribadi, fleksibel sepenuhnya mengikut cita rasa anda.',
-  high:['Pemandu lokal yang tahu selok-belok pulau','Laluan & tempoh fleksibel (8–10 jam)','Pilihan kereta (4 pax) atau van (sehingga 10 pax)','Boleh gabung SkyCab, mangrove, Kuah, Cenang, Makam Mahsuri','Sesuai untuk keluarga, kumpulan kecil & warga emas'],
-  inc:'Termasuk kenderaan, driver & minyak. Tiket masuk tarikan tidak termasuk.'},
- {key:'mangrove',title:'Mangrove Tour',tagline:'Kilim Geoforest Park',badge:null,
-  img:'https://picsum.photos/seed/lkwmangrove2/700/525.jpg',
-  short:'Perahu menembusi gua batu kapur, sesi memberi makan helang, dan ladang ikan terapung di hutan bakau.',
-  price:'RM65',unit:'/pax',
-  desc:'Menyusuri sungai bakau Kilim yang tersenarai sebagai Geoforest Park UNESCO — gua kapur berusia jutaan tahun, helang menjunam dari langit, dan kehidupan kampung laut yang tenang.',
-  high:['Perahu menembusi Gua Kelawu & Gua Buaya','Sesi memberi makan helang laut','Ladang ikan terapung — anak-anak suka','Teluk Yu & formasi karst "hole in the wall"','Pemandu yang menerangkan ekosistem bakau'],
-  inc:'Termasuk perahu & jurupandu lokal. Versi private RM480/van (hingga 6 pax, termasuk pengangkutan).'},
- {key:'sunset',title:'Sunset Cruise',tagline:'Golden hour at sea',badge:null,
-  img:'https://picsum.photos/seed/lkwsunset/700/525.jpg',
-  short:'Pelayaran semasa matahari terbenam — BBQ halal di atas kapal, muzik akustik live dan jacuzzi air laut.',
-  price:'RM295',unit:'/pax',
-  desc:'Antara sunset terbaik di Malaysia, dinikmati dari atas kapal. Makan malam BBQ halal, muzik akustik live, dan net jacuzzi air laut yang menjadi kegemaran kanak-kanak — dan juga orang dewasa.',
-  high:['Makan malam BBQ halal di atas kapal','Salt-water jacuzzi net — kegemaran semua peringkat umur','Muzik akustik live semasa golden hour','Pelayaran sepanjang garis pantai barat pulau','Minuman selamat datang disediakan'],
-  inc:'Termasuk makan malam BBQ halal & welcome drink. Pindahan hotel–jeti RM30/pax (pilihan).'},
- {key:'3in1',title:'3 In 1 Activities',tagline:'Island Hopping · Snorkel · Fishing',badge:null,
-  img:'https://picsum.photos/seed/lkw3in1/700/525.jpg',
-  short:'Tiga pengalaman laut dalam satu hari — island hopping, snorkeling dan sedikit sesi memancing.',
-  price:'RM180',unit:'/pax',
-  desc:'Satu hari, tiga aktiviti. Bot membawa anda ke pulau-pulau sekitar Langkawi untuk island hopping, berhenti di spot snorkeling yang cantik, dan sesi memancing ringkas di tengah laut.',
-  high:['Island hopping ke 3 pulau terpilih','Snorkeling di spot terumbu yang jernih','Sesi memancing ringkas — peralatan disediakan','Makan tengah hari halal di atas bot','Lengkap dengan jaket keselamatan'],
-  inc:'Termasuk bot, peralatan snorkel & pancing, makan tengah hari halal. Yuran marin RM10/pax dibayar di jeti.'},
- {key:'jetski',title:'JetSki Tour Packages',tagline:'Island hopping on water',badge:null,
-  img:'https://picsum.photos/seed/lkwjetski/700/525.jpg',
-  short:'Jet ski anda sendiri — pandu dari Pulau Tuba ke teluk tersembunyi, dengan panduan profesional.',
-  price:'RM350',unit:'/jetski',
-  desc:'Bukan jetski biasa — ini island hopping dengan jetski. Pandu sendiri (atau bersama panduan) dari Pulau Tuba ke teluk-teluk tersembunyi yang bot biasa tak sampai. Tiada lesen diperlukan.',
-  high:['Jet ski anda sendiri (max 2 pax per ski)','Pandu ke Pulau Tuba & teluk tersembunyi','Panduan profesional di depan — pemula dialu-alukan','Tiada lesen diperlukan','Sesi foto & berenang di stopover'],
-  inc:'Termasuk jet ski, jaket keselamatan & panduan. Deposit RM100/ski dikembalikan selepas.'},
- {key:'atv',title:'ATV Ride',tagline:'Off-road adventure',badge:'Hot Selling',
-  img:'https://picsum.photos/seed/lkwatv/700/525.jpg',
-  short:'Kembara merentas kebun getah, kampung dan denai berlumpur Gunung Raya. Untuk pencari adrenalin.',
-  price:'RM150',unit:'/pax',
-  desc:'Kembara off-road sebenar — merentas kebun getah, kampung tradisional dan denai berlumpur di kaki Gunung Raya. Untuk pencari adrenalin dan keluarga yang suka seronok. Brefing keselamatan diberikan sebelum mula.',
-  high:['Denai off-road merentas kebun getah & kampung','Pemanduan 60–90 minit','Pemandu profesional & brefing keselamatan','Sesuai untuk pemula & berpengalaman','Topi keledar & peralatan disediakan'],
-  inc:'Termasuk ATV, topi keledar & panduan. Kasut tertutup & baju lengan panjang digalakkan.'}
+ {key:'tour',title:'Tour Langkawi — Kereta & MPV',tagline:'With driver · Custom route',badge:'Hot Selling',defaultTime:'10:00 AM',
+  img:'https://picsum.photos/seed/lkwsedantour/700/525.jpg',
+  short:'Lawatan darat dengan pemandu lokal — laluan 100% custom anda, kereta sedan atau MPV, 6 atau 8 jam.',
+  desc:'Anda tentukan laluan, kami bawa. Pemandu lokal yang tahu selok-belok pulau membawa anda ke landmark popular — atau tempat tersembunyi yang hanya anak pulau tahu. Flexible stops bila-bila anda mahu berhenti untuk foto atau makan.',
+  high:['Pemandu lokal & laluan sepenuhnya custom','Pilihan sedan (hingga 4 pax) atau MPV (hingga 8 pax)','Tempoh 6 atau 8 jam — ikut masa anda','Flexible stops sepanjang laluan'],
+  tiers:[
+    {name:'Sedan - 6 Hours',price:'RM160',desc:['Sedan private tour 6 hours','Flexible landmark stops','Driver included']},
+    {name:'Sedan - 8 Hours',price:'RM250',desc:['Sedan private tour 8 hours','Full-day itinerary','Driver included']},
+    {name:'MPV - 6 Hours',price:'RM200',desc:['MPV private tour 6 hours','Flexible landmark stops','Driver included']},
+    {name:'MPV - 8 Hours',price:'RM350',desc:['MPV private tour 8 hours','Full-day itinerary','Driver included']}
+  ],
+  inc:'Termasuk pemandu & kenderaan. Tiket masuk tarikan & makan tidak termasuk.'},
+ {key:'mangrove',title:'Mangrove Tour — Kilim',tagline:'Exclusive curated experience',badge:null,defaultTime:'9:00 AM',
+  img:'https://picsum.photos/seed/lkwmangrove3/700/525.jpg',
+  short:'Eksplorasi sungai Kilim — memberi makan helang, gua batu kapur, ladang ikan. Bot kongsi atau private.',
+  desc:'Menyusuri Kilim Geoforest Park — ekosistem bakau berusia jutaan tahun, formasi karst dramatik, helang menjunam mencari makan, dan gua-gua batu kapur yang hanya boleh dimasuki bila keadaan air mengizinkan.',
+  high:['Sesi memberi makan helang di tengah sungai','Gua batu kapur sepanjang laluan Kilim','Ladang ikan terapung','Formasi karst dramatik di sepanjang tebing'],
+  tiers:[
+    {name:'Private Boat (2 Hours)',price:'RM400',desc:['Private boat tour (2 hours)','Eagle Watching','Kilim river route']},
+    {name:'Package A',price:'RM350',desc:['Eagle Watching','Fish Farm','Fish Restaurant']},
+    {name:'Package B',price:'RM550',desc:['Eagle Watching','River Cruise','Monkey Feeding','Crocodile Cave','Bat Cave','Kilim Geopark','Andaman Sea','Fish Farm']},
+    {name:'Package C',price:'RM750',desc:['Eagle Watching','River Cruise','Monkey Feeding','Crocodile Cave','Bat Cave','Fish Farm','Kilim Geopark','Andaman Sea','Dangli Island (Fish Feeding)']},
+    {name:'Package D',price:'RM770',desc:['Eagle Watching','River Cruise','Monkey Feeding','Crocodile Cave','Bat Cave','Fish Farm','Kilim Geopark','Andaman Sea','Dangli Island (Fish Feeding and Snorkeling)','Beach Swimming']}
+  ],
+  inc:'Semua pakej termasuk perahu & pemandu bot. Yuran pemuliharaan Kilim (jika dikenakan) dibayar di jeti.'},
+ {key:'jetski',title:'JetSki Mangrove Tour',tagline:'9 Checkpoints · 3–4 Jam',badge:null,defaultTime:'9:00 AM',
+  img:'https://picsum.photos/seed/lkwjetski2/700/525.jpg',
+  short:'Jetski sendiri menyusuri 9 checkpoint mangrove Kilim — ladang ikan, helang, gua buaya, memberi makan monyet.',
+  desc:'Bukan jetski biasa — ini ekspedisi mangrove penuh dengan jetski anda sendiri. 9 checkpoint sepanjang Kilim: berhenti memberi makan helang, melawat ladang ikan, menembusi gua buaya, dan berpeluang berhenti di teluk tersembunyi.',
+  high:['9 checkpoint mengelilingi Kilim Geoforest','Ladang ikan terapung & memberi makan helang','Gua buaya & formasi karst dramatik','Memberi makan monyet di tepi sungai','Durasi 3–4 jam dengan panduan profesional'],
+  tiers:[{name:'JetSki Mangrove — Pakej Penuh',price:'RM750',desc:['9 checkpoint Kilim Geoforest','Pickup + beg kalis air + jaket + kasut pantai','Panduan profesional','Tiada lesen diperlukan']}],
+  inc:'Termasuk pickup (pengangkutan), beg kalis air, jaket keselamatan & kasut pantai. Tiada lesen diperlukan.'},
+ {key:'sunset',title:'Sunset Cruise',tagline:'Exclusive curated experience',badge:null,defaultTime:'5:00 PM',times:['4:00 PM','5:00 PM'],
+  img:'https://picsum.photos/seed/lkwsunset2/700/525.jpg',
+  short:'Pelayaran petang 3–4 jam mod kongsi — sunset panorama di laut, kawasan urut air masin, makanan ikut pakej.',
+  desc:'Berlayar waktu golden hour — antara sunset terbaik di Malaysia dilihat dari atas kapal. Mod kongsi (shared basis) dengan suasana santai di petang hari, kawasan salt-water massage yang jadi kegemaran semua peringkat umur.',
+  high:['Sunset panorama penuh di tengah laut','Kawasan salt-water massage & relax di laut','Makanan disediakan mengikut pakej dipilih','Safety briefing & peralatan keselamatan lengkap'],
+  tiers:[{name:'Sunset Cruise — Shared',price:'RM250',desc:['Tiket cruise 3–4 jam','Makanan mengikut pakej','Safety briefing & peralatan']}],
+  inc:'Termasuk tiket cruise, safety briefing & makanan mengikut pakej. Pelan premium (deck seat istimewa) — harga berbeza, pilih masa tempahan.'},
+ {key:'3in1',title:'3 In 1 Activities',tagline:'Featured combo · Min 4 pax',badge:'Hot Selling',defaultTime:'10:00 AM',poa:true,
+  img:'https://picsum.photos/seed/lkw3in1b/700/525.jpg',
+  short:'Tiga aktiviti lasak dalam satu pakej — Jet Car ride, parasailing dari bot, dan banana boat. Min 4 pax.',
+  desc:'Pakej kombinasi penuh aksi untuk pencari sensasi dan kumpulan. Satu sesi, tiga aktiviti air paling popular Langkawi — bawa krew atau keluarga, semua pasti seronok. Harga bundle istimewa bila tempah sebagai satu pakej.',
+  high:['Jet Car ride — kereta air lasak di laut','Parasailing ditarik dari bot','Banana boat bersama rakan-rakan','Peralatan keselamatan penuh disediakan'],
+  inc:'Termasuk peralatan keselamatan, team support & akses ketiga-tiga aktiviti. Harga bundle — minimum 4 pax.'},
+ {key:'atv',title:'ATV Ride — Paddy & Beach',tagline:'Off-road adventure',badge:'Hot Selling',defaultTime:'10:00 AM',
+  img:'https://picsum.photos/seed/lkwatv2/700/525.jpg',
+  short:'Kembara off-road 50–70 minit merentas sawah padi, pantai dan hutan. 2 orang berkongsi 1 ATV.',
+  desc:'Kembara ATV sebenar merentas denai kampung Langkawi — sawah padi hijau, segmen pantai berangin dan laluan hutan. Mesra keluarga, sesuai untuk pemula, dan dua orang boleh berkongsi satu ATV.',
+  high:['Laluan merentas sawah padi (paddy field)','Segmen pantai & laluan hutan','Durasi 50–70 minit','2 orang berkongsi 1 ATV'],
+  tiers:[{name:'ATV — 2 Pax / 1 ATV',price:'RM250',desc:['Durasi 50–70 minit','Laluan paddy field · pantai · hutan','Topi keledar & brefing disediakan']}],
+  inc:'Termasuk ATV, topi keledar & brefing keselamatan. Kasut tertutup digalakkan.'}
 ];
 
 function renderActs(){
-  qs('#actGrid').innerHTML=ACTS.map(a=>`
+  qs('#actGrid').innerHTML=ACTS.map(a=>{
+    const t0=a.tiers?a.tiers[a.defTier||0]:null;
+    const pTxt=a.poa?'Pakej Bundle':(t0?t0.price:'');
+    const pSmall=a.poa?'min 4 pax':'';
+    const waMsg=`Salam Jara Holidays! Saya berminat dengan ${a.title}${t0?` — ${t0.name} (${t0.price})`:''}. Boleh saya dapat info lanjut & tempahan?`;
+    return `
   <article class="act" data-act="${a.key}">
     <div class="act-img">
       <img loading="lazy" src="${a.img}" alt="${a.title}">
@@ -1006,20 +986,94 @@ function renderActs(){
       <h3 class="act-title">${a.title}</h3>
       <p class="act-desc">${a.short}</p>
       <div class="act-foot">
-        <span class="act-price">Mula <b>${a.price}</b><small>${a.unit}</small></span>
+        <span class="act-price">${t0?'Mula ':''}<b>${pTxt}</b>${pSmall?`<small>${pSmall}</small>`:''}</span>
         <div class="act-btns">
-          <button class="btn sm ghost" data-act-open="${a.key}">Butiran</button>
-          <a class="btn sm primary" target="_blank" rel="noopener" href="${waLink('Salam Jara Holidays! Saya berminat dengan '+a.title+' ('+a.price+a.unit+'). Boleh saya dapat info lanjut &amp; tempahan?')}">Tempah</a>
+          <button class="btn sm ghost" data-act-open="${a.key}">Tempah</button>
+          <a class="btn sm primary" target="_blank" rel="noopener" href="${waLink(waMsg)}">WhatsApp</a>
         </div>
       </div>
     </div>
-  </article>`).join('');
+  </article>`}).join('');
   refreshIcons();
 }
 renderActs();
 
+/* ================= MODAL BOOKING + PAKEJ + PEMBAYARAN ================= */
+let modalTimer=null;
+
+function tomorrowISO(){
+  const d=new Date();d.setDate(d.getDate()+1);
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function fmtDate(iso){
+  try{return new Date(iso+'T12:00:00').toLocaleDateString('en-MY',{day:'numeric',month:'short',year:'numeric'})}catch(_){return iso}
+}
+
 function openAct(key){
   const a=ACTS.find(x=>x.key===key);if(!a)return;
+  const times=a.times||TIME_SLOTS;
+  const dISO=tomorrowISO();
+  const selTierIdx=a.defTier||0;
+  const tierBlock=a.tiers?`
+    <p class="act-modal-tier-label">Package Options</p>
+    <div class="tier-list">
+      ${a.tiers.map((t,i)=>`
+      <div class="tier ${i===selTierIdx?'active':''}" data-i="${i}" role="button" tabindex="0">
+        <span class="tier-check"><i data-lucide="check"></i></span>
+        <span class="tier-info">
+          <span class="tier-selected-tag">Selected</span>
+          <span class="tier-name">${t.name}</span>
+          ${t.desc?`<ul class="tier-desc ${t.desc.length>4?'cols':''}">${t.desc.map(d=>`<li>${d}</li>`).join('')}</ul>`:''}
+        </span>
+        <span class="tier-price">${t.price}</span>
+      </div>`).join('')}
+    </div>`:'';
+
+  const bookingBlock=`
+    <div class="bk-section">
+      <p class="bk-title">${a.title} Booking</p>
+      <div class="bk-summary" id="bkSummary">Selected Date: <b id="bkDateTxt">—</b> | Time: <b id="bkTimeTxt">—</b></div>
+      <div class="bk-grid">
+        <div class="bk-field"><label for="bkDate">Preferred Date</label><input id="bkDate" type="date" min="${dISO}" value="${dISO}"></div>
+        <div class="bk-field"><label for="bkTime">Preferred Time</label>
+          <select id="bkTime">${times.map(t=>`<option value="${t}" ${t===a.defaultTime?'selected':''}>${t}</option>`).join('')}</select>
+        </div>
+        <div class="bk-field"><label for="bkName">Nama *</label><input id="bkName" type="text" placeholder="Nama penuh"></div>
+        <div class="bk-field"><label for="bkPhone">No. Telefon *</label><input id="bkPhone" type="tel" placeholder="012-345 6789"></div>
+        <div class="bk-field"><label for="bkEmail">Emel *</label><input id="bkEmail" type="email" placeholder="anda@emel.com"></div>
+        <div class="bk-field"><label for="bkPax">Bilangan Pax</label><input id="bkPax" type="number" min="1" value="2"></div>
+      </div>
+      <div class="bk-urgency"><i data-lucide="alarm-clock"></i><span id="bkUrgency">—</span></div>
+      <ul class="bk-policy">
+        <li><i data-lucide="check-circle-2"></i><span id="bkCancel">Free cancellation before 9:30 AM on selected date (local time).</span></li>
+        <li><i data-lucide="check-circle-2"></i><span>Reserve now, pay nothing until booking confirmation.</span></li>
+      </ul>
+      ${a.poa?`
+      <div class="poa-box">
+        <p>Pakej bundle ini diharga mengikut saiz kumpulan &amp; kombinasi aktiviti — hubungi kami untuk sebut harga terbaik.</p>
+        <a class="btn primary block" target="_blank" rel="noopener" id="bkWaReserve" href="#">Rizab &amp; Tanya Harga via WhatsApp <i data-lucide="message-circle"></i></a>
+      </div>`:`
+      <div class="bk-total">
+        <div class="bk-total-label">Total<b id="bkSelected">—</b></div>
+        <div class="bk-total-price" id="bkPrice">—</div>
+      </div>
+      <div class="pay-btns">
+        <button class="pay-btn pay-fpx" id="payFpx" type="button">
+          <span class="pl"><i data-lucide="landmark"></i>Online Banking (FPX)</span>
+          <span class="pr">Maybank · CIMB · Bank Islam<br>RHB · +20 bank lagi</span>
+        </button>
+        <button class="pay-btn pay-card" id="payCard" type="button">
+          <span class="pl"><i data-lucide="credit-card"></i>Kad Kredit / Debit</span>
+          <span class="pr">Visa · Mastercard · AMEX<br>Diproses oleh Stripe</span>
+        </button>
+        <button class="pay-btn pay-wa" id="payReserve" type="button">
+          <span class="pl"><i data-lucide="message-circle"></i>Rizab Dahulu — Bayar Kemudian</span>
+          <span class="pr">Pengesahan tempatan<br>dulu, bayar selepas confirm</span>
+        </button>
+      </div>
+      <p class="pay-secure"><i data-lucide="lock"></i> Pembayaran selamat — diproses oleh ToyyibPay (FPX) &amp; Stripe (kad)</p>`}
+    </div>`;
+
   qs('#actModalContent').innerHTML=`
     <img class="act-modal-img" src="${a.img}" alt="${a.title}">
     <div class="act-modal-inner">
@@ -1027,25 +1081,198 @@ function openAct(key){
       <h3>${a.title}</h3>
       <p class="act-modal-desc">${a.desc}</p>
       <ul class="act-modal-high">${a.high.map(h=>`<li><i data-lucide="check"></i><span>${h}</span></li>`).join('')}</ul>
+      ${tierBlock}
       <p class="act-modal-inc">${a.inc}</p>
-      <div class="act-modal-price">Harga bermula <b>${a.price}</b><small>${a.unit}</small></div>
-      <a class="btn primary block" target="_blank" rel="noopener" href="${waLink('Salam Jara Holidays! Saya mahu tempah '+a.title+' ('+a.price+a.unit+'). Boleh saya dapat info ketersediaan?')}">Tempah Melalui WhatsApp <i data-lucide="message-circle"></i></a>
+      ${bookingBlock}
     </div>`;
+
+  const st={tierIdx:selTierIdx,date:dISO,time:a.defaultTime};
+  const tier=()=>a.tiers?a.tiers[st.tierIdx]:null;
+
+  function refreshBooking(){
+    st.date=qs('#bkDate').value||dISO;
+    st.time=qs('#bkTime').value;
+    qs('#bkDateTxt').textContent=fmtDate(st.date);
+    qs('#bkTimeTxt').textContent=st.time;
+    qs('#bkCancel').textContent=`Free cancellation before 9:30 AM on ${fmtDate(st.date)} (local time).`;
+    if(!a.poa&&tier()){
+      qs('#bkSelected').textContent=`Selected: ${tier().name}`;
+      qs('#bkPrice').textContent=tier().price;
+    }
+    const cutoff=new Date(st.date+'T09:30:00');
+    const diff=cutoff-Date.now();
+    const el=qs('#bkUrgency');
+    if(diff<=0){el.innerHTML='<b>Tempahan untuk tarikh ini telah ditutup.</b> Sila pilih tarikh lain.';}
+    else{
+      const h=Math.floor(diff/36e5),m=Math.floor(diff%36e5/6e4);
+      const hrs=h>0?`${h} hour${h!==1?'s':''}`:'';
+      const mins=m>0?`${m} min`:'';
+      const left=[hrs,mins].filter(Boolean).join(' ');
+      el.innerHTML=`<b>${left} left to book.</b> The tour operator will stop accepting bookings for your date soon.`;
+    }
+  }
+  refreshBooking();
+  clearInterval(modalTimer);
+  modalTimer=setInterval(refreshBooking,30000);
+
+  ['bkDate','bkTime'].forEach(id=>qs('#'+id).addEventListener('change',refreshBooking));
+
+  if(a.tiers){
+    qsa('.tier').forEach(el=>{
+      const pick=()=>{
+        qsa('.tier').forEach(b=>b.classList.remove('active'));
+        el.classList.add('active');
+        st.tierIdx=+el.dataset.i;
+        refreshBooking();
+      };
+      el.addEventListener('click',pick);
+      el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick()}});
+    });
+  }
+
+  function waReserveMsg(){
+    const t=tier();
+    return ['Salam Jara Holidays! Saya mahu RIZAB tempahan (bayar kemudian):',
+      '• Aktiviti: '+a.title+(t?` — ${t.name}`:''),
+      '• Tarikh: '+fmtDate(st.date)+' | Masa: '+st.time,
+      '• Pax: '+(qs('#bkPax').value||'-'),
+      '• Nama: '+(qs('#bkName').value.trim()||'-'),
+      '• Telefon: '+(qs('#bkPhone').value.trim()||'-')
+    ].join('\n');
+  }
+  const waResBtn=qs('#bkWaReserve')||qs('#payReserve');
+  if(waResBtn){
+    if(waResBtn.tagName==='A')waResBtn.href=waLink(waReserveMsg());
+    else waResBtn.addEventListener('click',()=>{
+      window.open(waLink(waReserveMsg()),'_blank');
+      toast('Membuka WhatsApp — rizab anda akan disahkan oleh krew kami.','success');
+    });
+  }
+
+  /* ============ PEMBAYARAN ============ */
+  function validatePay(){
+    const need=[['#bkName','Nama'],['#bkPhone','No. telefon'],['#bkEmail','Emel']];
+    let ok=true;
+    need.forEach(([id])=>{
+      const f=qs(id);
+      f.classList.remove('err');
+      if(!f.value.trim()){f.classList.add('err');f.addEventListener('input',()=>f.classList.remove('err'));ok=false}
+    });
+    const em=qs('#bkEmail');
+    if(em.value.trim()&&!/^\S+@\S+\.\S+$/.test(em.value.trim())){em.classList.add('err');ok=false}
+    if(!ok)toast('Sila lengkapkan nama, no. telefon dan emel yang sah untuk pembayaran.','error');
+    return ok;
+  }
+
+  function payDesc(){
+    const t=tier();
+    return `${a.title}${t?' — '+t.name:''} | ${fmtDate(st.date)} ${st.time} | ${qs('#bkPax').value||1} pax | ${qs('#bkName').value.trim()}`;
+  }
+
+  qs('#payFpx')&&qs('#payFpx').addEventListener('click',async function(){
+    if(!validatePay())return;
+    const cfg=PAYMENT.toyyibpay;
+    if(!cfg.secretKey||!cfg.categoryCode){
+      toast('ToyyibPay belum dikonfigurasi. Isi secretKey & categoryCode dalam PAYMENT config (rujuk komen dalam kod).','error');
+      return;
+    }
+    const t=tier();
+    this.disabled=true;
+    const btnHtml=this.innerHTML;
+    this.innerHTML='<span class="pl"><i data-lucide="loader-2"></i>Menyambung ke ToyyibPay…</span>';
+    refreshIcons();
+    try{
+      const base=cfg.sandbox?'https://dev.toyyibpay.com':'https://pay.toyyibpay.com';
+      const form=new FormData();
+      form.append('userSecretKey',cfg.secretKey);
+      form.append('categoryCode',cfg.categoryCode);
+      form.append('billName','Jara Holidays — '+a.title);
+      form.append('billDescription',payDesc().slice(0,250));
+      form.append('billAmount',String(Math.round(rmPrice(t.price)*100)));
+      form.append('billPhone',qs('#bkPhone').value.trim());
+      form.append('billEmail',qs('#bkEmail').value.trim());
+      form.append('billPaymentChannel','0');
+      form.append('billSplitPayment','0');
+      form.append('billSplitPaymentArgs','');
+      form.append('billReturnURL',location.origin+location.pathname+'?status_id=1');
+      form.append('billCallbackURL',location.origin+location.pathname+'?status_id=1');
+      form.append('billExternalReferenceNo','JARA-'+Date.now());
+      const res=await fetch(base+'/index.php/api/createBill',{method:'POST',body:form});
+      const data=await res.json();
+      if(data&&data[0]&&data[0].BillCode){
+        toast('Mengarahkan ke halaman bayaran ToyyibPay…','success');
+        window.location.href=base+'/'+data[0].BillCode;
+      }else{
+        throw new Error(data&&data.msg?data.msg:'Respon tidak sah');
+      }
+    }catch(err){
+      toast('Ralat menyambung ke ToyyibPay: '+err.message,'error');
+      this.disabled=false;this.innerHTML=btnHtml;refreshIcons();
+    }
+  });
+
+  qs('#payCard')&&qs('#payCard').addEventListener('click',async function(){
+    if(!validatePay())return;
+    const cfg=PAYMENT.stripe;
+    if(!cfg.checkoutEndpoint){
+      toast('Stripe belum dikonfigurasi. Isi checkoutEndpoint dalam PAYMENT config — contoh kod backend diberikan dalam komen kod.','error');
+      return;
+    }
+    const t=tier();
+    this.disabled=true;
+    const btnHtml=this.innerHTML;
+    this.innerHTML='<span class="pl"><i data-lucide="loader-2"></i>Menyambung ke Stripe…</span>';
+    refreshIcons();
+    try{
+      const res=await fetch(cfg.checkoutEndpoint,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          amount:Math.round(rmPrice(t.price)*100),
+          currency:'myr',
+          description:payDesc().slice(0,250),
+          email:qs('#bkEmail').value.trim(),
+          name:qs('#bkName').value.trim(),
+          phone:qs('#bkPhone').value.trim()
+        })
+      });
+      const data=await res.json();
+      if(data&&data.url){
+        toast('Mengarahkan ke Stripe Checkout…','success');
+        window.location.href=data.url;
+      }else{
+        throw new Error(data&&data.error?data.error:'Respon tidak sah dari backend');
+      }
+    }catch(err){
+      toast('Ralat menyambung ke Stripe: '+err.message,'error');
+      this.disabled=false;this.innerHTML=btnHtml;refreshIcons();
+    }
+  });
+
   qs('#actModal').classList.add('show');
   document.body.style.overflow='hidden';
   refreshIcons();
 }
+
 document.addEventListener('click',e=>{
   const b=e.target.closest('[data-act-open]');
   if(b){openAct(b.dataset.actOpen)}
-  if(e.target.closest('[data-close="act"]')){qs('#actModal').classList.remove('show');document.body.style.overflow=''}
+  if(e.target.closest('[data-close="act"]')){
+    qs('#actModal').classList.remove('show');
+    document.body.style.overflow='';
+    clearInterval(modalTimer);
+  }
   if(e.target.closest('.act')&&!e.target.closest('button')&&!e.target.closest('a')){
     const art=e.target.closest('.act');
     if(art.dataset.act)openAct(art.dataset.act);
   }
 });
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){qs('#actModal').classList.remove('show');document.body.style.overflow=''}
+  if(e.key==='Escape'){
+    qs('#actModal').classList.remove('show');
+    document.body.style.overflow='';
+    clearInterval(modalTimer);
+  }
 });
 
 /* ================= DATA PAKAJ ANTARABANGSA ================= */
@@ -1065,7 +1292,7 @@ const DAYS_BALKAN=[
  {c:'Sofia, Bulgaria',t:'Penerbangan ke Sofia',m:'Sarapan · Makan Malam',v:'Pesawat · Bas',vi:'plane-landing',a:['Penerbangan Istanbul → Sofia','Masjid Banya Bashi — warisan Islam Bulgaria','Gereja St. George & Alexander Nevsky (luar)','Makan malam halal di Sofia']},
  {c:'Skopje, Macedonia Utara',t:'Bandar Patung-Patung',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Sofia → Skopje','Stone Bridge & Old Bazaar — heritage Islam','Benteng Kale & cross Skopje','Makan tengah hari halal di Pasar Lama']},
  {c:'Tirana, Albania',t:'Ibu Kota Mediterania',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Skopje → Tirana','Masjid Ethem Bey & Menara Jam','Bunkers & Muzium Nasional Albania','Makan malam halal di Tirana']},
- {c:'Kotor, Montenegro',t:'Bay of Kotor (UNESCO)',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Tirana → Kotor','Bay of Kotor — salah satu fjord paling selatan','Menara climb ke Benteng Kotor (pilihan)','Bandar lama Kotor — Warisan UNESCO']},
+ {c:'Kotor, Montenegro',t:'Bay of Kotor (UNESCO)',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Tirana → Kotor','Bay of Kotor — salah satu fjord paling selatan','Climb ke Benteng Kotor (pilihan)','Bandar lama Kotor — Warisan UNESCO']},
  {c:'Dubrovnik, Croatia',t:'Pearl of the Adriatic',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Kotor → Dubrovnik','Bandar lama Dubrovnik — Warisan Dunia UNESCO','City Walls walk (pilihan)','Stradun & lokasi pengambaran Game of Thrones']},
  {c:'Mostar, Bosnia',t:'Jambatan Tua Mostar',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Dubrovnik → Mostar','Stari Most (Jambatan Tua) — simbol Bosnia','Old Bazaar Kujundziluk — heritage Islam','Makan tengah hari — hidangan Bosnia']},
  {c:'Sarajevo, Bosnia',t:'Bandar Jerusalem Eropah',m:'Sarapan · Tengah Hari · Malam',v:'Bas',vi:'bus',a:['Perjalanan Mostar → Sarajevo','Bandar lama Baščaršija & Masjid Gazi Husrev-bey','Terowong Tunnel of Hope — sejarah perang','Makan malam halal — ćevapi Bosnia']},
@@ -1148,7 +1375,7 @@ function renderDay(key){
 }
 renderIntl();
 
-qsa('[data-zoom]').forEach(el=>el.addEventListener('click',()=>{const key=el.dataset.zoom;const p=INTL.find(x=>x.key===key);if(p)window.open(p.poster,'_blank')}));
+qsa('[data-zoom]').forEach(el=>el.addEventListener('click',()=>{const p=INTL.find(x=>x.key===el.dataset.zoom);if(p)window.open(p.poster,'_blank')}));
 qsa('[data-scroll-itin]').forEach(b=>b.addEventListener('click',()=>{const t=qs('#'+b.dataset.scrollItin+' .itinerary');if(t)t.scrollIntoView({behavior:'smooth',block:'center'})}));
 
 function tickCountdown(){
@@ -1162,10 +1389,11 @@ function tickCountdown(){
 }
 tickCountdown();setInterval(tickCountdown,1000);
 
+/* ================= TESTIMONI ================= */
 const QUOTES=[
- {q:'Kaptain private tour tu tahu masa terbaik elak orang ramai. Anak-anak saya sampai merajuk sebab tak nak balik.',w:'Aiman R.',s:'Kuala Lumpur — Private Tour Langkawi'},
- {q:'Mangrove waktu pagi memang berbaloi. Masuk Gua Kelawu tu rasa macam jalan dalam dokumentari National Geographic.',w:'Sarah & Keluarga',s:'Pulau Pinang — Mangrove Tour'},
- {q:'ATV ride tu… seronok gila. Baju putih kami masuk balik warna coklat. Tak kesah, berbaloi!',w:'Firdaus & Rakan',s:'Johor Bahru — ATV Ride'},
+ {q:'Pemandu tour tu tahu masa terbaik elak orang ramai. Anak-anak saya sampai merajuk sebab tak nak balik.',w:'Aiman R.',s:'Kuala Lumpur — Tour with Driver'},
+ {q:'Mangrove waktu pagi memang berbaloi. Tengok helang junam depan mata tu rasa macam jalan dalam dokumentari National Geographic.',w:'Sarah & Keluarga',s:'Pulau Pinang — Mangrove Tour'},
+ {q:'ATV lalu sawah padi tu… seronok gila. Baju putih kami masuk balik warna coklat. Tak kesah, berbaloi!',w:'Firdaus & Rakan',s:'Johor Bahru — ATV Ride'},
  {q:'Sunset cruise… 10/10. Suami saya buat-buat romantic pula. Tahun depan anniversary, kami datang lagi.',w:'Mira & Suami',s:'Shah Alam — Sunset Cruise'}
 ];
 let qi=0,qTimer;
@@ -1185,6 +1413,7 @@ showQuote(0);qAuto();
 qs('#quoteBox').addEventListener('mouseenter',()=>clearInterval(qTimer));
 qs('#quoteBox').addEventListener('mouseleave',qAuto);
 
+/* ================= BORANG TEMPahan ================= */
 qs('#bookForm').addEventListener('submit',e=>{
   e.preventDefault();
   const name=qs('#f-name'),phone=qs('#f-phone');
@@ -1215,6 +1444,49 @@ qsa('[data-reveal]').forEach(el=>revObs.observe(el));
 
 qs('#yr').textContent=new Date().getFullYear();
 refreshIcons();
+
+/* ============================================================
+   CONTOH BACKEND UNTUK STRIPE CHECKOUT (host berasingan)
+   Simpan sebagai server.js, deploy ke Vercel/Railway/Render,
+   masukkan URL ke PAYMENT.stripe.checkoutEndpoint.
+   Gantikan sk_live_... dengan Secret Key Stripe anda.
+
+   const express = require('express');
+   const cors = require('cors');
+   const stripe = require('stripe')('sk_live_GANTI_DENGAN_SECRET_KEY_ANDA');
+   const app = express();
+   app.use(express.json());
+   app.use(cors());
+
+   app.post('/create-checkout', async (req, res) => {
+     try {
+       const { amount, currency, description, email } = req.body;
+       const session = await stripe.checkout.sessions.create({
+         mode: 'payment',
+         line_items: [{
+           price_data: {
+             currency: currency || 'myr',
+             product_data: { name: description },
+             unit_amount: amount,
+           },
+           quantity: 1,
+         }],
+         customer_email: email,
+         success_url: 'https://YOURSITE.com/?status_id=1',
+         cancel_url: 'https://YOURSITE.com/?payment=cancel',
+       });
+       res.json({ url: session.url });
+     } catch (err) {
+       res.status(500).json({ error: err.message });
+     }
+   });
+
+   app.listen(3000);
+   ------------------------------------------------------------
+   TOYYIBPAY TIDAK perlukan backend — cukup isi:
+   - PAYMENT.toyyibpay.secretKey
+   - PAYMENT.toyyibpay.categoryCode
+   ============================================================ */
 </script>
 </body>
 </html>
