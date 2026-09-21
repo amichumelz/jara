@@ -520,7 +520,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
 <div id="mnav">
   <button id="mnavClose" aria-label="Tutup menu"><i data-lucide="x"></i></button>
   <a href="#langkawi"><em>01 — Langkawi</em>Top Rated Activities</a>
-  <a href="#antarabangsa"><em>02 — Antarabangsa</em>Yunnan &amp; Balkan</a>
+  <a href="#antarabangsa"><em>02 — Antarabangsa</em>Batam, Yunnan &amp; Balkan</a>
   <a href="#tentang"><em>03 — Tentang</em>Tentang Kami</a>
   <a href="#tempahan"><em>04 — Tempahan</em>Tempah &amp; Hubungi</a>
   <p class="mnav-foot">WhatsApp <b>012-365 9345</b> · 9pg – 9mlm setiap hari</p>
@@ -535,7 +535,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
   <div class="hero-body">
     <p class="hero-eyebrow">Best Travel Agency</p>
     <h1 class="hero-title" id="heroTitle">Explore the World</h1>
-    <p class="hero-desc">Dari pasir putih Langkawi hingga salji Yunnan &amp; masjid bersejarah Balkan — pakej Muslim-friendly dengan tour leader berbahasa Melayu, halal sepanjang perjalanan.</p>
+    <p class="hero-desc">Dari pasir putih Langkawi hingga pulau Batam, salji Yunnan &amp; masjid bersejarah Balkan — pakej Muslim-friendly dengan tour leader berbahasa Melayu, halal sepanjang perjalanan.</p>
     <div class="hero-actions">
       <button class="btn-discover" id="btnDiscover" data-goto="#langkawi">Discover <i data-lucide="arrow-right"></i></button>
       <button class="btn-knowmore" data-goto="#tentang"><i data-lucide="info"></i> Know More</button>
@@ -596,8 +596,8 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
   <div class="wrap">
     <div class="sec-head" data-reveal>
       <p class="kicker light">( 02 ) — Siri Antarabangsa</p>
-      <h2 class="sec-title">Dari salji Yunnan ke <em>Balkan</em> &amp; Istanbul.</h2>
-      <p class="sec-intro">Dua ekspedisi sulung kami ke luar negara — satu menyusuri pegunungan sejuk China, satu lagi melintasi tujuh negara Balkan dan Istanbul. Makanan halal sepanjang perjalanan, tour leader berbahasa Melayu.</p>
+      <h2 class="sec-title">Dari Batam, salji Yunnan ke <em>Balkan</em> &amp; Istanbul.</h2>
+      <p class="sec-intro">Pakej kembara antarabangsa Muslim-friendly pilihan kami — dari percutian santai Batam bersama Pak Abu, salji tanah tinggi Yunnan China, hingga kembara tujuh negara Balkan dan Istanbul. Makanan halal sepanjang perjalanan, tour leader berbahasa Melayu.</p>
     </div>
     <div id="intlBlocks" data-reveal></div>
   </div>
@@ -677,6 +677,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
               <option>ATV Ride — Paddy &amp; Beach</option>
             </optgroup>
             <optgroup label="Siri Antarabangsa">
+              <option>Welcome to Batam — 3 Hari 2 Malam (6–8 Nov 2026)</option>
               <option>Winter in Yunnan — 7 Hari 6 Malam (Dis 2026)</option>
               <option>Balkan Tour + Istanbul — 10 Hari (Apr 2027)</option>
             </optgroup>
@@ -707,6 +708,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
       </div>
       <nav class="foot-links">
         <a href="#langkawi">Aktiviti Langkawi</a>
+        <a href="#antarabangsa">Welcome to Batam</a>
         <a href="#antarabangsa">Winter in Yunnan</a>
         <a href="#antarabangsa">Balkan + Istanbul</a>
         <a href="#tentang">Tentang</a>
@@ -747,8 +749,10 @@ const PAYMENT={
 const WA='60123659345';
 const POSTER_YUNNAN='https://z-cdn-media.chatglm.cn/files/9426b3f6-c705-4295-ba85-20c54777209b.png?auth_key=1887538547-f4426e4deb2240dc9a294ac75c29f2ec-0-aa310b0677a3713043d0801d4893421d';
 const POSTER_BALKAN='https://z-cdn-media.chatglm.cn/files/43e27dcb-ae80-4bc6-8d30-403295d3c1d9.png?auth_key=1887540538-068d7d8bcbc246bc9f3472af207ef0ee-0-8cb32546ee4b454f0ef763731f539d3c';
+const POSTER_BATAM='poster-batam.jpg';
 const FALLBACK_YUNNAN='https://picsum.photos/seed/winteryunnanposter/900/1273.jpg';
 const FALLBACK_BALKAN='https://picsum.photos/seed/balkanposter/900/1273.jpg';
+const FALLBACK_BATAM='poster-batam.jpg';
 
 const qs=(s,c=document)=>c.querySelector(s);
 const qsa=(s,c=document)=>[...c.querySelectorAll(s)];
@@ -1266,6 +1270,12 @@ const DAYS_BALKAN=[
  {c:'Pulang',t:'Sarajevo → Istanbul → KL',m:'Sarapan',v:'Pesawat',vi:'plane-takeoff',a:['Penerbangan Sarajevo → Istanbul','Transit & shopping akhir di Istanbul (jika masa mencukupi)','Penerbangan Istanbul → Kuala Lumpur','Tiba di KLIA']}
 ];
 const STOPS_BALKAN=[{city:'Istanbul',days:'H1–2',from:1,to:2},{city:'Sofia',days:'H3',from:3,to:3},{city:'Skopje',days:'H4',from:4,to:4},{city:'Tirana',days:'H5',from:5,to:5},{city:'Kotor',days:'H6',from:6,to:6},{city:'Dubrovnik',days:'H7',from:7,to:7},{city:'Mostar',days:'H8',from:8,to:8},{city:'Sarajevo',days:'H9–10',from:9,to:10}];
+const DAYS_BATAM=[
+ {c:'Pasir Gudang → Batam',t:'Pelayaran Feri, Masjid Tanjak & Check-in',m:'Makan Tengah Hari · Malam',v:'Feri & Bas AC',vi:'sailboat',a:['Berkumpul di Terminal Feri Pasir Gudang & proses pelepasan','Pelayaran feri pergi Pasir Gudang → Batam','Ketibaan di Batam & sambutan oleh krew / pemandu pelancong berbahasa Melayu','Melawat Masjid Tanjak — senibina ikonik unik menyerupai tanjak Melayu','Makan tengah hari hidangan tempatan Batam','Check-in Biz Hotel / Golden View Hotel (atau setaraf) & rehat','Makan malam & aktiviti santai sekitar pulau']},
+ {c:'Batam Island Tour',t:'Barelang Bridge, Masjid Madinah, Masjid Cheng Ho & Seafood Feast',m:'Sarapan · Tengah Hari · Malam (Seafood)',v:'Bas AC',vi:'bus',a:['Sarapan pagi di hotel','Lawatan ke Barelang Bridge — mercu tanda ikonik Batam','Ziarah Masjid Sultan Mahmud Riayat Shah (payung gaya Madinah)','Melawat Masjid Cheng Ho — keunikan warisan budaya Islam-Cina','Makan tengah hari masakan tempatan','Membeli-belah di DC Mall — syurga shopping pakaian, telekung & cenderahati','Jamuan makan malam istimewa — Delicious Local Seafood dinner']},
+ {c:'Batam → Pasir Gudang',t:'Shopping Akhir & Feri Pulang',m:'Sarapan · Makan Tengah Hari',v:'Feri & Bas AC',vi:'sailboat',a:['Sarapan pagi & proses check-out hotel','Peluang membeli-belah cenderahati & kek lapis Batam saat akhir','Makan tengah hari sebelum ke terminal feri','Bertolak ke terminal feri Batam','Pelayaran feri pulang ke Terminal Feri Pasir Gudang dengan seribu kenangan indah']}
+];
+const STOPS_BATAM=[{city:'Pasir Gudang / Batam',days:'H1',from:1,to:1},{city:'Batam Island Tour',days:'H2',from:2,to:2},{city:'Pulang Pasir Gudang',days:'H3',from:3,to:3}];
 
 const INTL=[
  {key:'yunnan',seri:'Siri 01 — Musim Sejuk',title:'Winter in Yunnan',sub:'Kunming · Dali · Shangri-La · Lijiang',date:'2–8 Disember 2026',dur:'7 Hari 6 Malam',
@@ -1283,10 +1293,18 @@ const INTL=[
   high:['Hagia Sophia & Masjid Biru di Istanbul','Bandar lama Dubrovnik (UNESCO) — "Pearl of the Adriatic"','Stari Most — jambatan tua simbol Mostar, Bosnia','Bay of Kotor — fjord paling selatan dunia (Montenegro)','Sarajevo — bandar bersejarah "Jerusalem Eropah"','Bosphorus Cruise di Istanbul — antara dua benua'],
   inc:['Penerbangan pulang-pergi (KUL ⇄ IST + penerbangan antara bandar)','Penginapan 9 malam','Makanan halal sepanjang perjalanan','Bas selesa antara bandar','Tiket masuk & aktiviti seperti itinerary','Tour leader Jara Holidays & panduan tempatan'],
   days:DAYS_BALKAN,stops:STOPS_BALKAN,reverse:true,
-  waMsg:'Salam Jara Holidays! Saya berminat dengan Balkan Tour + Istanbul — 10 Hari (1–10 April 2027). Boleh saya dapat maklumat penuh & pendaftaran?'}
+  waMsg:'Salam Jara Holidays! Saya berminat dengan Balkan Tour + Istanbul — 10 Hari (1–10 April 2027). Boleh saya dapat maklumat penuh & pendaftaran?'},
+ {key:'batam',seri:'Siri 03 — Kembara Singkat',title:'Welcome to Batam',sub:'Shopping · Mosques · Island Vibes · Local Food · Bersama Pak Abu',date:'6–8 November 2026',dur:'3 Hari 2 Malam',
+  poster:POSTER_BATAM,fallback:FALLBACK_BATAM,rotate:-1.2,priceAdult:'RM950',priceChild:'RM750',
+  dep:new Date('2026-11-06T08:00:00+08:00').getTime(),status:'hot',statusLabel:'Khas Staf RM950 (Asal RM1,300)',
+  chips:['6–8 Nov 2026','3 Hari 2 Malam','All-In-One Fare','Feri PP Pasir Gudang','Bersama Pak Abu'],
+  high:['Barelang Bridge — mercu tanda ikonik Batam','Masjid Sultan Mahmud Riayat Shah (payung gaya Madinah)','Masjid Tanjak (senibina unik) & Masjid Cheng Ho','Shopping di DC Mall — syurga pakaian & cenderahati','6 hidangan lengkap termasuk jamuan Seafood tempatan','Penginapan 2 malam di Biz Hotel / Golden View'],
+  inc:['Feri pergi-balik Pasir Gudang ⇄ Batam','Pengangkutan berhawa dingin (AC transport) & Malay guide','Penginapan 2 malam (Biz Hotel / Golden View atau setaraf)','6 kali makan (hidangan tempatan & seafood dinner)','Semua lawatan & aktiviti mengikut itinerary','Pengalaman bermakna & santai bersama Pak Abu'],
+  days:DAYS_BATAM,stops:STOPS_BATAM,reverse:false,
+  waMsg:'Salam Jara Holidays / Pak Abu! Saya berminat dengan Pakej Welcome to Batam — 3 Hari 2 Malam (6–8 November 2026). Boleh saya dapat maklumat penuh & pendaftaran?'}
 ];
 
-const dayState={yunnan:1,balkan:1};
+const dayState={yunnan:1,balkan:1,batam:1};
 
 function renderIntl(){
   qs('#intlBlocks').innerHTML=INTL.map(p=>`
