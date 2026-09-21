@@ -131,7 +131,9 @@ h1,h2,h3,h4,.sec-title{font-weight:600;letter-spacing:-.03em;line-height:1.1}
 .hero.loaded .hero-eyebrow{opacity:1;transform:none}
 .hero-eyebrow::before,.hero-eyebrow::after{content:'';width:36px;height:1.5px;background:rgba(255,255,255,.55)}
 /* Tajuk — letter-spacing lebar, responsif penuh */
-.hero-title{font-size:clamp(1.9rem,5.4vw,4.9rem);font-weight:800;letter-spacing:.16em;line-height:1.16;text-transform:uppercase;color:#fff;text-shadow:0 10px 55px rgba(0,0,0,.55),0 2px 16px rgba(0,0,0,.4);margin:1.35rem 0 1.3rem;max-width:22ch;width:100%;text-wrap:balance;perspective:900px}
+.hero-title{font-size:clamp(1.9rem,5.4vw,4.9rem);font-weight:800;letter-spacing:.16em;word-spacing:.35em;line-height:1.16;text-transform:uppercase;color:#fff;text-shadow:0 10px 55px rgba(0,0,0,.55),0 2px 16px rgba(0,0,0,.4);margin:1.35rem 0 1.3rem;max-width:24ch;width:100%;text-wrap:balance;perspective:900px}
+.hero-title .word{display:inline-block;white-space:nowrap}
+.hero-title .word-space{display:inline-block;width:clamp(0.5em,1.8vw,0.85em)}
 .hero-title .letter{display:inline-block;opacity:0;transform:translateY(100%) rotateX(-80deg);transform-origin:bottom;transition:opacity .7s ease,transform .7s cubic-bezier(.16,1,.3,1)}
 .hero.loaded .hero-title .letter{opacity:1;transform:none}
 .hero-desc{font-size:clamp(.92rem,1.6vw,1.08rem);font-weight:300;color:rgba(255,255,255,.95);max-width:560px;line-height:1.6;text-shadow:0 2px 14px rgba(0,0,0,.6);opacity:0;transform:translateY(16px);transition:opacity .8s ease .75s,transform .8s cubic-bezier(.16,1,.3,1) .75s}
@@ -417,7 +419,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
 @media(max-width:860px){
   .nav-links,.nav-search{display:none}#burger{display:flex}
   .hero-body{padding:6.5rem 1.2rem 6.5rem}
-  .hero-title{font-size:clamp(1.55rem,7.2vw,3.4rem);letter-spacing:.13em;line-height:1.2;max-width:18ch}
+  .hero-title{font-size:clamp(1.55rem,7.2vw,3.4rem);letter-spacing:.13em;word-spacing:.32em;line-height:1.2;max-width:18ch}
   .hero-desc{font-size:.9rem;max-width:44ch}
   .btn-discover,.btn-knowmore{padding:.85rem 1.7rem;font-size:.9rem}
   .hero-dots{right:auto;left:50%;transform:translateX(-50%);bottom:4.9rem}
@@ -435,7 +437,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
 }
 @media(max-width:600px){
   .hero-body{padding:6rem 1rem 6.5rem}
-  .hero-title{font-size:clamp(1.35rem,8vw,2.4rem);letter-spacing:.1em;line-height:1.22;max-width:16ch}
+  .hero-title{font-size:clamp(1.35rem,8vw,2.4rem);letter-spacing:.1em;word-spacing:.28em;line-height:1.22;max-width:16ch}
   .hero-eyebrow{font-size:.6rem;letter-spacing:.26em}
   .hero-eyebrow::before,.hero-eyebrow::after{width:22px}
   .hero-actions{gap:.7rem}
@@ -464,7 +466,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
   .marquee-set{font-size:.6rem;gap:1.6rem;padding-right:1.6rem}
 }
 @media(max-width:420px){
-  .hero-title{font-size:clamp(1.15rem,9vw,1.8rem);letter-spacing:.09em;max-width:15ch}
+  .hero-title{font-size:clamp(1.15rem,9vw,1.8rem);letter-spacing:.09em;word-spacing:.25em;max-width:15ch}
   .hero-eyebrow{font-size:.55rem;letter-spacing:.22em}
   .soc-btn{width:34px;height:34px}
   .soc-btn svg{width:14px;height:14px}
@@ -811,8 +813,28 @@ window.addEventListener('scroll',()=>{
 
 /* ================= HERO ================= */
 function splitLetters(el){
-  const text=el.textContent;el.innerHTML='';
-  [...text].forEach((ch,i)=>{const s=document.createElement('span');s.className='letter';s.textContent=ch;s.style.transitionDelay=(0.25+i*0.04)+'s';el.appendChild(s)});
+  const text=el.textContent.trim();el.innerHTML='';
+  const words=text.split(/\s+/);
+  let charIdx=0;
+  words.forEach((word,wIdx)=>{
+    const wSpan=document.createElement('span');
+    wSpan.className='word';
+    [...word].forEach(ch=>{
+      const s=document.createElement('span');
+      s.className='letter';
+      s.textContent=ch;
+      s.style.transitionDelay=(0.25+charIdx*0.04)+'s';
+      wSpan.appendChild(s);
+      charIdx++;
+    });
+    el.appendChild(wSpan);
+    if(wIdx<words.length-1){
+      const sp=document.createElement('span');
+      sp.className='word-space';
+      sp.innerHTML='&nbsp;';
+      el.appendChild(sp);
+    }
+  });
 }
 splitLetters(qs('#heroTitle'));
 
