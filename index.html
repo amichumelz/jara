@@ -747,7 +747,7 @@ const PAYMENT={
   },
   stripe:{
     publishableKey:'',
-    checkoutEndpoint:''
+    checkoutEndpoint:'/api/create-checkout'
   }
 };
 
@@ -778,9 +778,8 @@ function toast(msg,type='info'){
 
 (function checkPaymentReturn(){
   const p=new URLSearchParams(location.search);
-  if(p.get('status_id')==='1')toast('Pembayaran berjaya! Jara Holidays akan hubungi anda untuk pengesahan tempahan. Terima kasih!','success');
-  else if(p.get('status_id')==='3')toast('Pembayaran tidak selesai / dibatalkan. Tiada caj dibuat.','error');
-  else if(p.get('payment')==='cancel')toast('Pembayaran dibatalkan.','error');
+  if(p.get('status_id')==='1'||p.get('payment')==='success')toast('Pembayaran berjaya! Jara Holidays akan hubungi anda untuk pengesahan tempahan. Terima kasih!','success');
+  else if(p.get('status_id')==='3'||p.get('payment')==='cancel')toast('Pembayaran tidak selesai / dibatalkan. Tiada caj dibuat.','error');
 })();
 
 /* ================= PRELOADER ================= */
