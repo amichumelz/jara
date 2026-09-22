@@ -204,7 +204,7 @@ h1,h2,h3,h4,.sec-title{font-weight:600;letter-spacing:-.03em;line-height:1.1}
 /* ============ BAHAGIAN ANTARABANGSA ============ */
 .intl-block{display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(2.2rem,4vw,4.5rem);align-items:start;margin-bottom:6rem;padding-bottom:6rem;border-bottom:1px solid var(--border-dark)}
 .intl-block:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
-.intl-block.reverse .intl-poster{order:2}.intl-block.reverse .intl-info{order:1}
+.intl-block.reverse .intl-poster{order:2}.intl-block.reverse .intl-info{order:1}.intl-block.reverse .itinerary{order:3}
 .poster-frame{background:var(--bg);padding:10px 10px 46px;border-radius:14px;box-shadow:var(--shadow-xl);position:relative;cursor:zoom-in;transition:transform .5s cubic-bezier(.16,1,.3,1),box-shadow .5s;transform-style:preserve-3d;will-change:transform}
 .poster-frame:hover{box-shadow:0 30px 70px rgba(0,0,0,.5)}
 .poster-frame img{width:100%;border-radius:8px;background:var(--bg-alt);min-height:420px}
@@ -411,7 +411,7 @@ footer{background:var(--bg-dark-2);color:var(--text-dark);padding:4rem 0 2rem}
 /* ============ RESPONSIF ============ */
 @media(max-width:980px){
   .intl-block,.intl-block.reverse{grid-template-columns:1fr}
-  .intl-block.reverse .intl-poster{order:0}.intl-block.reverse .intl-info{order:0}
+  .intl-block .intl-poster,.intl-block.reverse .intl-poster{order:1}.intl-block .intl-info,.intl-block.reverse .intl-info{order:2}.intl-block .itinerary,.intl-block.reverse .itinerary{order:3}
   .about-grid,.book-grid{grid-template-columns:1fr}
   .poster-frame{max-width:400px;margin:0 auto}
   .poster-frame img{min-height:380px}
@@ -1317,7 +1317,7 @@ const INTL=[
   chips:['1–10 Apr 2027','10 Hari 9 Malam','7 Negara','Halal Sepanjang','Penerbangan Termasuk'],
   high:['Hagia Sophia & Masjid Biru di Istanbul','Bandar lama Dubrovnik (UNESCO) — "Pearl of the Adriatic"','Stari Most — jambatan tua simbol Mostar, Bosnia','Bay of Kotor — fjord paling selatan dunia (Montenegro)','Sarajevo — bandar bersejarah "Jerusalem Eropah"','Bosphorus Cruise di Istanbul — antara dua benua'],
   inc:['Penerbangan pulang-pergi (KUL ⇄ IST + penerbangan antara bandar)','Penginapan 9 malam','Makanan halal sepanjang perjalanan','Bas selesa antara bandar','Tiket masuk & aktiviti seperti itinerary','Tour leader Jara Holidays & panduan tempatan'],
-  days:DAYS_BALKAN,stops:STOPS_BALKAN,reverse:true,
+  days:DAYS_BALKAN,stops:STOPS_BALKAN,reverse:false,
   waMsg:'Salam Jara Holidays! Saya berminat dengan Balkan Tour + Istanbul — 10 Hari (1–10 April 2027). Boleh saya dapat maklumat penuh & pendaftaran?'},
  {key:'batam',seri:'Siri 03 — Kembara Singkat',title:'Welcome to Batam',sub:'Shopping · Mosques · Island Vibes · Local Food · Bersama Pak Abu',date:'6–8 November 2026',dur:'3 Hari 2 Malam',
   poster:POSTER_BATAM,fallback:FALLBACK_BATAM,rotate:-1.2,priceAdult:'RM950',priceChild:'RM750',
